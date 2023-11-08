@@ -43,8 +43,10 @@ def select_zip_file(data_path: Path, target: str) -> Path:
     """
     path_l = [path for path in data_path.iterdir()]
     name_l = [p.name.split('.')[0] for p in path_l]
-    assert target in name_l, f"指定したファイルがないか、ファイル名が間違っています：{target}"
-    target_zip_idx = name_l.index(target)
+    if target in name_l:
+        target_zip_idx = name_l.index(target)
+    else:
+        raise ValueError(f'指定したファイルがないか、ファイル名が間違っています：{target}')
     target_zip_path = path_l[target_zip_idx]
     return target_zip_path
 
