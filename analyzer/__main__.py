@@ -13,7 +13,8 @@ def make_parser():
 
 def run():
     args = make_parser()
-    read_data.read_zip_file(args.target)
+    data_l = read_data.read_zip_file(args.target)
+    print(data_l)
 
 
 if __name__ == '__main__':

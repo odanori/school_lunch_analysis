@@ -87,7 +87,7 @@ def read_csv_file(target_zip_path: Path) -> List[InfoAndData]:
     return data_l
 
 
-def read_zip_file(target):
+def read_zip_file(target: str) -> List[InfoAndData]:
     """zipファイルのデータを分類分けして読み込む
 
     Args:
@@ -96,4 +96,4 @@ def read_zip_file(target):
     data_path = make_data_path()
     target_zip_path = select_zip_file(data_path, target)
     data_l = read_csv_file(target_zip_path)
-    print(data_l)
+    return data_l
