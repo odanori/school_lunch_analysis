@@ -5,6 +5,7 @@ from typing import Dict
 
 import analyzer.read_data as read_data
 from analyzer.config import Config
+from analyzer.preprocessing import Preprocessing
 
 
 def make_parser():
@@ -30,7 +31,8 @@ def load_settings(config_json_name: str) -> Dict:
                    }
     """
     config_path = Path('./settings') / config_json_name
-    config_json = json.load(open(config_path))
+    print(config_path)
+    config_json = json.load(open(config_path, encoding='utf-8_sig'))
     config = Config(config_json)
     return config
 
@@ -42,6 +44,9 @@ def run():
     config = load_settings(args.config_json_file)
     data_l = read_data.read_zip_file(config.analysis_target)
     data = data_l[0].data
+
+    preprocess = Preprocessing(config)
+    preprocess.data_preprocess(data)
 
 
 if __name__ == '__main__':
