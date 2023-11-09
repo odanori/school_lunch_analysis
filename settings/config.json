@@ -1,6 +1,6 @@
 {
     "analysis_target": "kyusyoku",
-    "preprocessing": {
+    "formatting": {
         "rename_col": "日付"
     }
 }

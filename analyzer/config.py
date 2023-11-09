@@ -10,8 +10,8 @@ class Config():
             config_json (Dict): _description_
         """
         self.config = config_json
-        preprocessing = self.config['preprocessing']
+        formating = self.config['formatting']
 
         self.analysis_target = self.config['analysis_target']
 
-        self.rename_col = preprocessing['rename_col']
+        self.rename_col = formating['rename_col']
