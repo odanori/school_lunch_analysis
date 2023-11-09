@@ -42,7 +42,6 @@ def run():
     config = load_settings(args.config_json_file)
     data_l = read_data.read_zip_file(config.analysis_target)
     data = data_l[0].data
-    preprocessing.preprocess(data)
 
 
 if __name__ == '__main__':
