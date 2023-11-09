@@ -137,6 +137,22 @@ class Preprocessing():
         del data
         return formatting_data
 
+    def manipulate_nan_data(self, formatting_data: pd.DataFrame):
+        # print(formatting_data.isnull())
+        elements = formatting_data[formatting_data.isnull().any(
+            axis=1)][self.config.nan_col].values
+        elements = list(set(elements))
+        # FIXME: 材料名が「水」以外の欠損値が出た場合は例外処理。材料に合わせた処理(入力ミスなのか、など)を検討し実装
+        # 「水」は汁もの以外のレシピ内容で、料理ごとに測れるものでない、かつ栄養も0なので0埋め処理
+        if elements[0] != '水':
+            raise Exception('水以外の欠損があった場合の処理は後程実装')
+        elif len(elements) > 1:
+            raise Exception('水以外の欠損があった場合の処理は後程実装')
+        else:
+            pass
+        # print(formatting_data[formatting_data.isnull().any(axis=1)])
+
     def data_preprocess(self, data: pd.DataFrame, era: int, group: int) -> pd.DataFrame:
         formatting_data = self.data_formatting(data, era, group)
+        self.manipulate_nan_data(formatting_data)
         return formatting_data
