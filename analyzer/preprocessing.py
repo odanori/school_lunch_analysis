@@ -137,22 +137,37 @@ class Preprocessing():
         del data
         return formatting_data
 
-    def manipulate_nan_data(self, formatting_data: pd.DataFrame):
-        # print(formatting_data.isnull())
+    def manipulate_nan_data(self, formatting_data: pd.DataFrame) -> pd.DataFrame:
         elements = formatting_data[formatting_data.isnull().any(
             axis=1)][self.config.nan_col].values
         elements = list(set(elements))
         # FIXME: 材料名が「水」以外の欠損値が出た場合は例外処理。材料に合わせた処理(入力ミスなのか、など)を検討し実装
         # 「水」は汁もの以外のレシピ内容で、料理ごとに測れるものでない、かつ栄養も0なので0埋め処理
-        if elements[0] != '水':
-            raise Exception('水以外の欠損があった場合の処理は後程実装')
-        elif len(elements) > 1:
-            raise Exception('水以外の欠損があった場合の処理は後程実装')
+        if elements[0] != self.config.nan_name:
+            raise Exception('水以外の欠損があった場合の処理は未対応。後程実装')
+        if len(elements) > 1:
+            raise Exception('水以外の欠損があった場合の処理は未対応。後程実装')
+
+        # TODO: nan_nameで指定した材料名に欠損があった場合、材料名ごとに処理する機能を追加
+        if elements[0] == self.config.nan_name:
+            manipulating_data = formatting_data.fillna(0)
         else:
-            pass
-        # print(formatting_data[formatting_data.isnull().any(axis=1)])
+            manipulating_data = formatting_data
+        return manipulating_data
+
+    def manipulate_str_data(self, formatting_data: pd.DataFrame) -> pd.DataFrame:
+        print(
+            elements=formatting_data[formatting_data.str.contains(['~', '～'])])
+
+    def data_manipulating(self, formatting_data: pd.DataFrame) -> pd.DataFrame:
+        manipulating_data = formatting_data.copy()
+        manipulating_data = self.manipulate_nan_data(manipulating_data)
+        self.manipulate_str_data(manipulating_data)
+
+        del formatting_data
+        return manipulating_data
 
     def data_preprocess(self, data: pd.DataFrame, era: int, group: int) -> pd.DataFrame:
         formatting_data = self.data_formatting(data, era, group)
-        self.manipulate_nan_data(formatting_data)
-        return formatting_data
+        manipulating_data = self.manipulate_nan_data(formatting_data)
+        return manipulating_data
