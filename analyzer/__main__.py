@@ -46,7 +46,7 @@ def run():
 
     preprocess = Preprocessing(config)
     processed_data_l = [preprocess.data_preprocess(
-        info_and_data.data) for info_and_data in info_and_data_l]
+        info_and_data.data, info_and_data.era, info_and_data.group) for info_and_data in info_and_data_l]
     print(processed_data_l)
 
 
