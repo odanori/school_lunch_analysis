@@ -24,4 +24,4 @@ class Preprocessing():
 
     def data_preprocess(self, data: pd.DataFrame) -> pd.DataFrame:
         data = self.rename_column(data)
-        print(data)
+        return data

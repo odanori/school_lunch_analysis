@@ -42,11 +42,12 @@ def run():
     """
     args = make_parser()
     config = load_settings(args.config_json_file)
-    data_l = read_data.read_zip_file(config.analysis_target)
-    data = data_l[0].data
+    info_and_data_l = read_data.read_zip_file(config.analysis_target)
 
     preprocess = Preprocessing(config)
-    preprocess.data_preprocess(data)
+    processed_data_l = [preprocess.data_preprocess(
+        info_and_data.data) for info_and_data in info_and_data_l]
+    print(processed_data_l)
 
 
 if __name__ == '__main__':
