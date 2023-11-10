@@ -161,7 +161,7 @@ class Preprocessing():
             pd.DataFrame: nanの部分を0埋めしたデータ
         """
         elements = formatting_data[formatting_data.isnull().any(
-            axis=1)][self.config.nan_col].values
+            axis=1)]['材料名'].values
         elements = list(set(elements))
         # FIXME: 材料名が「水」以外の欠損値が出た場合は例外処理。材料に合わせた処理(入力ミスなのか、など)を検討し実装
         if elements[0] != self.config.nan_name:

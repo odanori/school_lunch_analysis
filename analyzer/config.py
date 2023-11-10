@@ -4,7 +4,7 @@ from typing import Dict
 class Config():
 
     def __init__(self, config_json: Dict) -> None:
-        """前処理の設定を変数に指定する
+        """前処理の設定項目config.jsonの値を変数に代入する
 
         Args:
             config_json (Dict): 前処理の設定を記したjsonファイルを読み込んだもの
@@ -17,7 +17,6 @@ class Config():
 
         self.rename_col = formating['rename_col']
 
-        self.nan_col = manipulating['nan_col']
         self.nan_name = manipulating['nan_name']
         self.str_num_col = manipulating['str_num_col']
         self.datetime_col = manipulating['datetime_col']
