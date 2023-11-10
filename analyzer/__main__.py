@@ -39,6 +39,14 @@ def load_settings(config_json_name: str) -> Config:
 
 
 def prepare_data(config: Config) -> pd.DataFrame:
+    """データの読み出しと前処理を行う関数
+
+    Args:
+        config (Config): 読み出し対象や前処理を行うカラムの設定
+
+    Returns:
+        pd.DataFrame: 前処理が行われた各データが1つに結合されたもの
+    """
     info_and_data_l = read_data.read_zip_file(config.analysis_target)
 
     preprocess = Preprocessing(config)
