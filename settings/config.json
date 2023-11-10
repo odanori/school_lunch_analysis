@@ -4,7 +4,6 @@
         "rename_col": "日付"
     },
     "manipulating": {
-        "nan_col": "材料名",
         "nan_name": "水",
         "str_num_col": "分量（g）",
         "datetime_col": "日付"
