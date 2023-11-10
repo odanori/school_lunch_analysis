@@ -19,4 +19,5 @@ class Config():
 
         self.nan_col = manipulating['nan_col']
         self.nan_name = manipulating['nan_name']
-        self.str_col_start = manipulating['str_col_start']
+        self.str_num_col = manipulating['str_num_col']
+        self.datetime_col = manipulating['datetime_col']

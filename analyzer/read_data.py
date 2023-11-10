@@ -18,7 +18,7 @@ class InfoAndData(NamedTuple):
     """
     era: int
     month: int
-    group: int
+    group: str
     data: pd.DataFrame
 
 

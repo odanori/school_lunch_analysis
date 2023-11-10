@@ -1,5 +1,7 @@
+import re
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 from analyzer.config import Config
@@ -34,7 +36,7 @@ class Preprocessing():
         data.dropna(how='all', axis=0, inplace=True)
         return data
 
-    def add_era_and_group(self, data: pd.DataFrame, era: int, group: int) -> pd.DataFrame:
+    def add_era_and_group(self, data: pd.DataFrame, era: int, group: str) -> pd.DataFrame:
         """データに元号と地域グループ番号を追加
 
         Args:
@@ -90,19 +92,19 @@ class Preprocessing():
            カラム名がないにもかかわらず、何らかのデータがあった場合は
            out_of_range_logファイルに記載
            例: out_of_range_logファイルの中身
-               era group     日付       献立名     材料名 分量（g）  エネルギー（kcal）  たんぱく質（g）  脂質（g）  ナトリウム（mg）  Unnamed: 8 Unnamed: 9
-                 4   c  2022/9/6  あじのこはく揚げ   油    35         21.0              0.0            2.4            0.0          NaN       2022/6/16
+               era group     日付       献立名     材料名 分量（g）... ナトリウム（mg）Unnamed: 8 Unnamed: 9
+                 4   c  2022/9/6  あじのこはく揚げ   油    35      ...     0.0          NaN     2022/6/16
                   →データがないはずのUnnamed:9カラムに日付らしきものがある
 
         Args:
             data (pd.DataFrame): csvデータ
-                      例 era group     日付       献立名     材料名 分量（g）  エネルギー（kcal）  たんぱく質（g）  脂質（g）  ナトリウム（mg）  Unnamed: 8 Unnamed: 9
-                           4   c  2022/11/1      麦ごはん    米     70         239               4.3             0.6            1.0          NaN        nan
+                      例 era group     日付       献立名     材料名 分量（g）...  ナトリウム（mg）  Unnamed: 8 Unnamed: 9
+                           4   c  2022/11/1      麦ごはん    米     70      ...        1.0          NaN        nan
 
         Returns:
             pd.DataFrame: 引数のデータからUnnamedカラムが削除処理されたもの
-                    例 era group     日付       献立名     材料名 分量（g）  エネルギー（kcal）  たんぱく質（g）  脂質（g）  ナトリウム（mg）
-                           4   c  2022/11/1      麦ごはん    米     70         239               4.3             0.6            1.0
+                    例 era group     日付       献立名     材料名 分量（g）...  ナトリウム（mg）
+                           4   c  2022/11/1      麦ごはん    米     70    ...      1.0
         """
         columns = data.columns.values
         del_col_l = [col for col in columns if col.startswith('Unnamed')]
@@ -117,12 +119,13 @@ class Preprocessing():
             data.drop(columns=del_col_l, inplace=True)
         return data
 
-    def data_formatting(self, data: pd.DataFrame, era: int, group: int) -> pd.DataFrame:
-        """入力データ範囲外のエラーデータを削除する
-           元号や地域グループ番号を追加する
+    def data_formatting(self, data: pd.DataFrame, era: int, group: str) -> pd.DataFrame:
+        """入力データ範囲外のエラーデータを削除する、元号や地域グループ番号を追加する機能をまとめたデータ整形用関数
 
         Args:
             data (pd.DataFrame): csvデータ
+                      例 era group     日付   献立名   材料名  分量（g） エネルギー（kcal） たんぱく質（g）  脂質（g） ナトリウム（mg）
+                           4   c  2022/11/1  麦ごはん    米     70         239               4.3             0.6       1.0
             era (int): 元号
             group (int): 地域グループ番号
 
@@ -138,36 +141,100 @@ class Preprocessing():
         return formatting_data
 
     def manipulate_nan_data(self, formatting_data: pd.DataFrame) -> pd.DataFrame:
+        """非数(nan)が入力されたデータ処理をする
+           現状は 材料名: 水 の分量（g）カラムでのみnanのため、0埋め処理する
+           ※水 は汁もの以外のレシピ内容で、料理ごとに測れるものでない、かつ栄養も0なので0埋め処理
+
+        Args:
+            formatting_data (pd.DataFrame): data_formatting関数で整形されたデータ
+
+        Raises:
+            Exception: 水以外の欠損値があった場合、処理終了
+                       (現状は水以外に欠損値がないため、その他欠損値が出た場合処理を追加)
+
+        Returns:
+            pd.DataFrame: nanの部分を0埋めしたデータ
+        """
         elements = formatting_data[formatting_data.isnull().any(
             axis=1)][self.config.nan_col].values
         elements = list(set(elements))
         # FIXME: 材料名が「水」以外の欠損値が出た場合は例外処理。材料に合わせた処理(入力ミスなのか、など)を検討し実装
-        # 「水」は汁もの以外のレシピ内容で、料理ごとに測れるものでない、かつ栄養も0なので0埋め処理
         if elements[0] != self.config.nan_name:
-            raise Exception('水以外の欠損があった場合の処理は未対応。後程実装')
+            raise Exception('水以外の欠損値があった場合の処理は未対応。後程実装')
         if len(elements) > 1:
-            raise Exception('水以外の欠損があった場合の処理は未対応。後程実装')
+            raise Exception('水以外の欠損値があった場合の処理は未対応。後程実装')
 
         # TODO: nan_nameで指定した材料名に欠損があった場合、材料名ごとに処理する機能を追加
         if elements[0] == self.config.nan_name:
-            manipulating_data = formatting_data.fillna(0)
-        else:
-            manipulating_data = formatting_data
-        return manipulating_data
+            formatting_data.fillna(0, inplace=True)
+        return formatting_data
 
     def manipulate_str_data(self, formatting_data: pd.DataFrame) -> pd.DataFrame:
-        print(
-            elements=formatting_data[formatting_data.str.contains(['~', '～'])])
+        """文字列で入力された数値データをfloatに変換する
+           数字以外の文字列が入ったデータを一意な数値に変換する
+           ※現状は分量（g）で120～130のような入力の変形処理のみを行う
+
+        Args:
+            formatting_data (pd.DataFrame): data_formatting関数で整形されたデータ
+
+        Returns:
+            pd.DataFrame: 文字列で入力された数字を数値に変換したデータ
+        """
+        def calc_mean_value(str_sp_val: str) -> str:
+            """120～130のように～で範囲の意味で入力されたデータについて、平均値を求める
+
+            Args:
+                str_sp_val (str): 範囲の意味で入力された文字列データ
+                                 例: era group    日付       献立名        材料名  分量 （g）
+                                     5    b    2023/10/31  ワンタンスープ    水    120~130
+                                     上記データ内の120~130
+
+            Returns:
+                str: 範囲で入力されたデータの平均値
+                     例: 120~130 なら 125
+            """
+            split_val = re.split(r"~|～", str_sp_val)
+            mean_val = np.mean(list(map(float, split_val)))
+            return str(mean_val)
+        value = formatting_data[self.config.str_num_col].astype(str)
+        ex_idx = value[value.str.contains('~|～')].index
+        value.iloc[ex_idx] = value.iloc[ex_idx].apply(lambda x: calc_mean_value(x))
+        formatting_data[self.config.str_num_col] = value.astype(float).values
+
+        return formatting_data
+
+    def manipulate_datetime_data(self, formatting_data: pd.DataFrame) -> pd.DataFrame:
+        """日付をdatetime型に変換する
+
+        Args:
+            formatting_data (pd.DataFrame): data_formatting関数で整形されたデータ
+
+        Returns:
+            pd.DataFrame: 日付をdatetime型に変換したデータ
+        """
+        datetime_data = pd.to_datetime(formatting_data[self.config.datetime_col], format='%Y/%m/%d')
+        formatting_data[self.config.datetime_col] = datetime_data
+        return formatting_data
 
     def data_manipulating(self, formatting_data: pd.DataFrame) -> pd.DataFrame:
+        """data_formatting関数で整形したデータについて、nanや文字列データの変換、日付のdatetime型への変換を
+           まとめた関数
+
+        Args:
+            formatting_data (pd.DataFrame): data_formatting関数で整形されたデータ
+
+        Returns:
+            pd.DataFrame: nanや文字列データ、日付の処理が行われたデータ
+        """
         manipulating_data = formatting_data.copy()
         manipulating_data = self.manipulate_nan_data(manipulating_data)
-        self.manipulate_str_data(manipulating_data)
+        manipulating_data = self.manipulate_str_data(manipulating_data)
+        manipulating_data = self.manipulate_datetime_data(manipulating_data)
 
         del formatting_data
         return manipulating_data
 
-    def data_preprocess(self, data: pd.DataFrame, era: int, group: int) -> pd.DataFrame:
+    def data_preprocess(self, data: pd.DataFrame, era: int, group: str) -> pd.DataFrame:
         formatting_data = self.data_formatting(data, era, group)
-        manipulating_data = self.manipulate_nan_data(formatting_data)
+        manipulating_data = self.data_manipulating(formatting_data)
         return manipulating_data

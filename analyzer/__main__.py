@@ -1,7 +1,6 @@
 import argparse
 import json
 from pathlib import Path
-from typing import Dict
 
 import analyzer.read_data as read_data
 from analyzer.config import Config
@@ -16,7 +15,7 @@ def make_parser():
     return args
 
 
-def load_settings(config_json_name: str) -> Dict:
+def load_settings(config_json_name: str) -> Config:
     """調査対象zipファイルの指定や、前処理条件の設定jsonファイルの読み込み
 
     Args:
@@ -47,7 +46,7 @@ def run():
     preprocess = Preprocessing(config)
     processed_data_l = [preprocess.data_preprocess(
         info_and_data.data, info_and_data.era, info_and_data.group) for info_and_data in info_and_data_l]
-    # print(processed_data_l)
+    print(processed_data_l)
 
 
 if __name__ == '__main__':
