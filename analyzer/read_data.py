@@ -18,7 +18,7 @@ class InfoAndData(NamedTuple):
     """
     era: int
     month: int
-    group: int
+    group: str
     data: pd.DataFrame
 
 
@@ -71,7 +71,7 @@ def get_info_and_read_data(filename: str, zip_file: zipfile.ZipFile) -> InfoAndD
         era = int(data_info[:2]) - 1
     else:
         era = int(data_info[:2])
-    data = pd.read_csv(zip_file.open(filename), encoding='shift-jis')
+    data = pd.read_csv(zip_file.open(filename), encoding='cp932')
     return InfoAndData(era, month, group, data)
 
 
