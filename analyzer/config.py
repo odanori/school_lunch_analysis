@@ -7,7 +7,7 @@ class Config():
         """前処理の設定項目config.jsonの値を変数に代入する
 
         Args:
-            config_json (Dict): config.jsonを読み込んだ内容
+            config_json (Dict): 前処理の設定を記したjsonファイルを読み込んだもの
         """
         self.config = config_json
         formating = self.config['formatting']

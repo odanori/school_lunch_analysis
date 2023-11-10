@@ -11,6 +11,11 @@ from analyzer.preprocessing import Preprocessing
 
 
 def make_parser():
+    """実行時に指定する引数を受け付ける
+
+    Returns:
+        args: 受け付けた引数
+    """
     parser = argparse.ArgumentParser(
         description='調べたいデータのzipファイル名や前処理方法を記載したconfig.jsonファイルを指定')
     parser.add_argument('config_json_file', help='設定jsonファイル名')
