@@ -4,10 +4,10 @@ from typing import Dict
 class Config():
 
     def __init__(self, config_json: Dict) -> None:
-        """_summary_
+        """前処理の設定を変数に指定する
 
         Args:
-            config_json (Dict): _description_
+            config_json (Dict): 前処理の設定を記したjsonファイルを読み込んだもの
         """
         self.config = config_json
         formating = self.config['formatting']

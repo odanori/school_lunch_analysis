@@ -12,7 +12,12 @@ class Preprocessing():
     """
 
     def __init__(self, config: Config) -> None:
+        """
+        Args:
+            config (Config): config.jsonを読み込んだ設定クラス
+        """
         self.config = config
+        # csvデータ中の不明データのレコードを出力する
         self.out_of_range_log_path = Path('./out_of_range')
 
     def delete_nan_row(self, data: pd.DataFrame) -> pd.DataFrame:
@@ -235,6 +240,16 @@ class Preprocessing():
         return manipulating_data
 
     def data_preprocess(self, data: pd.DataFrame, era: int, group: str) -> pd.DataFrame:
+        """data_formatting関数とdata_manipulating関数をまとめて実行する関数
+
+        Args:
+            data (pd.DataFrame): csvデータ
+            era (int): 元号
+            group (str): 地域グループ番号
+
+        Returns:
+            pd.DataFrame: 前処理済みデータ
+        """
         formatting_data = self.data_formatting(data, era, group)
         manipulating_data = self.data_manipulating(formatting_data)
         return manipulating_data
