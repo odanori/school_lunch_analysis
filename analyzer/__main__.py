@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pandas as pd
 
+import analyzer.output as output
 import analyzer.read_data as read_data
 from analyzer.config import Config
 from analyzer.preprocessing import Preprocessing
@@ -56,13 +57,23 @@ def prepare_data(config: Config) -> pd.DataFrame:
     return concat_processed_data
 
 
+def output_data(data: pd.DataFrame) -> None:
+    """結果を出力する関数
+       現在はグラフ出力のみ
+
+    Args:
+        data (pd.DataFrame): prepare_data関数で処理されたデータ
+    """
+    output.output_graph(data)
+
+
 def run():
     """データ読み込みから前処理、グラフ化までの実行関数
     """
     args = make_parser()
     config = load_settings(args.config_json_file)
     data = prepare_data(config)
-    print(data)
+    output_data(data)
 
 
 if __name__ == '__main__':
