@@ -2,6 +2,8 @@ import argparse
 import json
 from pathlib import Path
 
+import pandas as pd
+
 import analyzer.read_data as read_data
 from analyzer.config import Config
 from analyzer.preprocessing import Preprocessing
@@ -36,17 +38,23 @@ def load_settings(config_json_name: str) -> Config:
     return config
 
 
-def run():
-    """データ読み込みから前処理、グラフ化までの実行関数
-    """
-    args = make_parser()
-    config = load_settings(args.config_json_file)
+def prepare_data(config: Config) -> pd.DataFrame:
     info_and_data_l = read_data.read_zip_file(config.analysis_target)
 
     preprocess = Preprocessing(config)
     processed_data_l = [preprocess.data_preprocess(
         info_and_data.data, info_and_data.era, info_and_data.group) for info_and_data in info_and_data_l]
-    print(processed_data_l)
+    concat_processed_data = pd.concat(processed_data_l, axis=0)
+    return concat_processed_data
+
+
+def run():
+    """データ読み込みから前処理、グラフ化までの実行関数
+    """
+    args = make_parser()
+    config = load_settings(args.config_json_file)
+    data = prepare_data(config)
+    print(data)
 
 
 if __name__ == '__main__':
