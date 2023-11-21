@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import List
 
+from preprocess.reader import read_data
 from scrapy import Spider
 from scrapy.http import Request
 
@@ -29,3 +30,7 @@ class MenuSpider(Spider):
         with open(save_path, 'wb') as f:
             f.write(response.body)
         self.log(f'saved file {save_path}')
+
+        data = read_data(save_path)
+        print(data)
+
