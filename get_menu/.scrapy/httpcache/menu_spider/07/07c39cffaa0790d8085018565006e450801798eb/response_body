@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+
+<title>小学校給食献立表オープンデータ｜横須賀市</title>
+<meta name="keywords" content="オープンデータ,献立表,学校給食,給食献立表" />
+
+<meta name="author" content="横須賀市" />
+<meta name="viewport" content="width=device-width, maximum-scale=3.0" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="datetime" content="2023-10-25 09:00:00" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="小学校給食献立表オープンデータ" />
+<meta property="og:url" content="https://www.city.yokosuka.kanagawa.jp/8345/kyuushoku/kyuusyoku-menu-open.html" />
+<meta property="og:description" content="&nbsp;" />
+<meta property="og:image" content="https://www.city.yokosuka.kanagawa.jp/shared/images/sns/logo.jpg" />
+<meta property="og:site_name" content="横須賀市" />
+<meta property="og:locale" content="ja_jp" />
+<link href="/shared/site_rn2022/style/default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/shared/site_rn2022/style/layout.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/shared/templates/free_rn2022/style/edit.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/shared/site_rn2022/style/smartphone.css" rel="stylesheet" type="text/css" class="mc_css" />
+<link href="/shared/templates/free_rn2022/style/edit_sp.css" rel="stylesheet" type="text/css" class="mc_css" />
+<link href="/shared/images/favicon/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+<link href="/shared/images/favicon/apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed" />
+<script type="text/javascript" src="/shared/site_rn2022/js/jquery.js"></script>
+<script type="text/javascript" src="/shared/site_rn2022/js/setting.js"></script>
+<script type="text/javascript" src="/shared/js/readspeaker.js"></script>
+<script type="text/javascript" src="/shared/js/ga.js"></script>
+
+
+
+
+
+</head>
+<body class="format_free no_javascript">
+<script type="text/javascript" src="/shared/site_rn2022/js/init.js"></script>
+<div id="tmp_wrapper">
+<noscript>
+<p>このサイトではJavaScriptを使用したコンテンツ・機能を提供しています。JavaScriptを有効にするとご利用いただけます。</p>
+</noscript>
+<p><a href="#tmp_honbun" class="skip">本文へスキップします。</a></p>
+
+<div id="tmp_header">
+<div class="container">
+<div id="tmp_hlogo">
+<p><a href="/top.html"><span>横須賀市</span></a></p>
+</div>
+<div class="head_social">
+<ul>
+	<li><a href="https://twitter.com/yokosuka_city" target="_blank"><img alt="Twitter" height="32" src="/shared/site_rn2022/images/icon/sns_tw.png" width="32" /></a></li>
+	<li><a href="/0832/kouhou/sns/facebook.html"><img alt="Facebook" height="32" src="/shared/site_rn2022/images/icon/sns_fb.png" width="32" /></a></li>
+	<li><a href="https://line.me/R/ti/p/&#64;196hbuhz" target="_blank"><img alt="LINE" height="32" src="/shared/site_rn2022/images/icon/sns_line.png" width="32" /></a></li>
+	<li><a href="https://www.youtube.com/channel/UCQDVaWThh91v2lgtCCqio5w" target="_blank"><img alt="YouTube" height="32" src="/shared/site_rn2022/images/icon/sns_yt.png" width="32" /></a></li>
+	<li><a href="/0832/kouhou/sns/instagram.html"><img alt="Instagram" height="32" src="/shared/site_rn2022/images/icon/sns_ins.png" width="32" /></a></li>
+</ul>
+</div>
+<div id="tmp_hnavi_s">
+<ul>
+	<li id="tmp_hnavi_top_menu"><a href="/top.html">総合<span class="sp_br">トップ</span></a></li>
+	<li id="tmp_hnavi_lmenu"><a href="javascript:void(0)"><span>検索</span></a></li>
+	<li id="tmp_hnavi_mmenu"><a href="javascript:void(0)"><span>メニュー</span></a></li>
+	<li id="tmp_hnavi_rmenu"><a href="javascript:void(0)"><span>緊急情報</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="tmp_sma_menu">
+<div id="tmp_sma_lmenu" class="wrap_sma_sch">
+<div class="container">
+<div id="tmp_sma_search">
+<fieldset><legend>検索条件を選択</legend>
+<ul class="search_change">
+	<li class="search_keyword"><input checked="checked" id="search_keyword" name="search_change" type="radio" value="0" /><label for="search_keyword">キーワードで検索</label></li>
+	<li class="search_id"><input id="search_id" name="search_change" type="radio" value="1" /><label for="search_id">ページIDで検索</label></li>
+</ul>
+</fieldset>
+<div id="tmp_sma_search_input">
+<div class="wrap_search_input">
+<div class="search_input search_input_keyword">
+<form action="/search/result.html" id="tmp_sma_gsearch" name="tmp_sma_gsearch">
+<div class="wrap_sch_row">
+<div class="wrap_sch_box">
+<p class="sch_box"><label for="tmp_sma_query">絞り込みメニュー</label><input id="tmp_sma_query" name="q" size="31" type="text" /></p>
+</div>
+<div class="wrap_sch_box"><select id="tmp_select_city" name="cx" title="検索範囲選択" class="select"><option selected="selected" value="002730863616812439332:yygixzw-tzi">横須賀市サイト全体検索</option><option value="002730863616812439332:4nvhst2k3p8">施設情報内検索</option><option value="002730863616812439332:tc-ekgwl7fc">イベント情報内検索</option><option value="002730863616812439332:t_fuujf2fn0">報道発表内検索</option> </select></div>
+<div class="wrap_sch_box">
+<p class="sch_btn"><input id="tmp_sma_func_sch_btn" name="sa" type="submit" value="検索" /></p>
+<p id="tmp_sma_search_hidden"><input id="cx" name="cx" type="hidden" value="002730863616812439332:yygixzw-tzi" /> <input name="ie" type="hidden" value="UTF-8" /> <input name="cof" type="hidden" value="FORID:9" /></p>
+</div>
+</div>
+</form>
+</div>
+<div class="search_input search_input_pageid">
+<div id="tmp_wrap_query_pageid">
+<p class="input_query_pageid"><label for="id_search_txt">ページID検索</label><input id="id_search_txt" name="q" placeholder="ページID" size="31" title="ページID検索" type="text" value="" /></p>
+<p class="submit_search_pageid"><input id="id_search_btn" type="submit" value="検索" class="id_search_btn" /></p>
+</div>
+</div>
+</div>
+<div class="how_to_use">
+<p><a href="/about_site/kensaku.html">検索の使い方</a></p>
+</div>
+</div>
+</div>
+</div>
+<p class="close_btn"><a href="javascript:void(0);"><span>閉じる</span></a></p>
+</div>
+<div id="tmp_sma_mmenu" class="wrap_sma_sch">
+<div class="container">
+<div id="tmp_sma_cnavi">
+<div id="tmp_mnavi">
+<ul>
+	<li class="mlist1"><a href="/index.html"><span>総合案内</span></a></li>
+	<li class="mlist2"><a href="/fukushi-kosodate/index.html"><span>福祉・子育て</span></a></li>
+	<li class="mlist3"><a href="/kanko-event/index.html"><span>観光・イベント</span></a></li>
+	<li class="mlist4"><a href="/business/index.html"><span>ビジネス</span></a></li>
+	<li class="mlist5"><a href="/yokosuka-channel/index.html"><span>よこすかチャンネル</span></a></li>
+	<li class="mlist6"><a href="/shisei/koho/kohoshi/index.html"><span>広報よこすか</span></a></li>
+</ul>
+</div>
+<!-- <div id="tmp_gnavi">
+<div class="gnavi">
+<ul>
+	<li class="glist1"><a href="/kurashi/index.html">くらし・手続き</a></li>
+	<li class="glist2"><a href="/kenkou/index.html">健康福祉・子育て教育</a></li>
+	<li class="glist3"><a href="/kankou/index.html">観光・文化・スポーツ</a></li>
+	<li class="glist4"><a href="/sangyou/index.html">産業・まちづくり</a></li>
+	<li class="glist5"><a href="/shisei/index.html">市政情報</a></li>
+</ul>
+</div>
+</div> -->
+<div id="tmp_mean">
+<div class="mean_row">
+<div class="mean_col">
+<div id="tmp_fsize" class="font_size_change changestyle_area">
+<ul class="change_list">
+	<li class="change_ttl">
+	<p>文字サイズ</p>
+	</li>
+	<li><a href="javascript:void(0);" name="small" class="changestyle">縮小</a></li>
+	<li><a href="javascript:void(0);" name="default" class="changestyle">標準</a></li>
+	<li><a href="javascript:void(0);" name="big2" class="changestyle">拡大</a></li>
+</ul>
+</div>
+<div id="tmp_color" class="tint_change changestyle_area">
+<ul class="change_list">
+	<li class="change_ttl">
+	<p>色合い変更</p>
+	</li>
+	<li><a href="javascript:void(0);" name="default" title="default" class="changestyle">標準</a></li>
+	<li><a href="javascript:void(0);" name="blue" title="blue" class="changestyle link_blue">青</a></li>
+	<li><a href="javascript:void(0);" name="yellow" title="yellow" class="changestyle link_yellow">黄</a></li>
+	<li><a href="javascript:void(0);" name="black" title="black" class="changestyle link_black">黒</a></li>
+</ul>
+</div>
+<div class="setting_wrap">
+<ul class="setting_list">
+	<li id="tmp_setting_read" class="setting_read">
+	<div id="readspeaker_button1" class="rs_skip"><a accesskey="L" href="https://app-eas.readspeaker.com/cgi-bin/rsent?customerid=13606&amp;lang=ja_jp&amp;readid=tmp_update,tmp_cate_ttl,tmp_read_contents&amp;url=" onclick="readpage(this.href, 'tmp_readspeaker'); return false;" rel="nofollow" class="rs_href">音声読み上げ</a></div>
+	</li>
+	<li class="setting_language"><a href="/0535/foreign_languages/index.html" lang="en" xml:lang="en">Language</a></li>
+</ul>
+</div>
+</div>
+<div class="mean_col">
+<div class="panel_info">
+<div class="nav_internal">
+<ul>
+	<li><a href="/0832/feedback/index.html">お問い合わせ・ご意見</a></li>
+	<li><a href="/shisei/gaiyo/soshiki/index.html">組織案内</a></li>
+</ul>
+</div>
+<div class="social_cate">
+<ul>
+	<li><a href="https://twitter.com/yokosuka_city" target="_blank"><img alt="Twitter" height="40" src="/shared/site_rn2022/images/icon/sns_tw.png" width="40" /></a></li>
+	<li><a href="/0832/kouhou/sns/facebook.html"><img alt="Facebook" height="40" src="/shared/site_rn2022/images/icon/sns_fb.png" width="40" /></a></li>
+	<li><a href="https://line.me/R/ti/p/&#64;196hbuhz" target="_blank"><img alt="LINE" height="40" src="/shared/site_rn2022/images/icon/sns_line.png" width="40" /></a></li>
+	<li><a href="https://www.youtube.com/channel/UCQDVaWThh91v2lgtCCqio5w" target="_blank"><img alt="YouTube" height="40" src="/shared/site_rn2022/images/icon/sns_yt.png" width="40" /></a></li>
+	<li><a href="/0832/kouhou/sns/instagram.html"><img alt="Instagram" height="40" src="/shared/site_rn2022/images/icon/sns_ins.png" width="40" /></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class="close_btn"><a href="javascript:void(0);"><span>閉じる</span></a></p>
+</div>
+<div id="tmp_sma_rmenu" class="wrap_sma_sch">
+<div class="container">
+<div class="wrap_box_emergency">
+<div class="box_emergency">
+<div class="box_emergency_ttl">
+<p>緊急情報</p>
+</div>
+<div class="box_emergency_cnt"></div>
+</div>
+<div class="emergency_read_all">
+<ul>
+	<li><a href="/kurashi/bosai/saigai/index.html">災害・防災情報</a></li>
+	<li><a href="/camera/index.html">災害監視カメラ</a></li>
+	<li><a href="http://yokosuka-city.site.ktaiwork.jp/" target="_blank">過去の一覧（外部サイト）</a></li>
+	<li><a href="/kinkyu/mail/emergency_information.html" lang="en" xml:lang="en">English</a></li>
+</ul>
+</div>
+</div>
+<p style="display: none;" class="close_btn"><a href="javascript:void(0);"><span>閉じる</span></a></p>
+</div>
+</div>
+</div>
+
+<div id="tmp_wrap_main" class="column_rnavi">
+<div class="container">
+<div id="tmp_pankuzu">
+<p><a href="/index.html">総合案内</a> &gt; <a href="/kenko/index.html">健康福祉・子育て教育</a> &gt; <a href="/kenko/kyoiku/index.html">教育</a> &gt; <a href="/kenko/kyoiku/shisaku/index.html">施策・取組み</a> &gt; <a href="/8345/kyuushoku/index.html">学校給食</a> &gt; <a href="/8345/kyuushoku/kyuusyoku-menu.html">小学校給食献立表</a> &gt; 小学校給食献立表オープンデータ</p>
+</div>
+<div id="tmp_wrap_custom_update">
+<div id="tmp_custom_update">
+
+<div id="tmp_social_plugins"><div class="social_media_btn line_btn">
+<div data-lang="ja" data-type="share-a" data-env="REAL" data-url="https://www.city.yokosuka.kanagawa.jp/8345/kyuushoku/kyuusyoku-menu-open.html" data-color="default" data-size="small" data-count="false" data-ver="3" style="display: none;" class="line-it-button"></div>
+<script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+</div><div class="social_media_btn facebook_btn">
+<div data-href="https://www.city.yokosuka.kanagawa.jp/8345/kyuushoku/kyuusyoku-menu-open.html" data-layout="button" data-size="small" class="fb-share-button"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.city.yokosuka.kanagawa.jp/8345/kyuushoku/kyuusyoku-menu-open.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェアする</a></div>
+</div><div class="social_media_btn twitter_btn">
+<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" data-show-count="false" data-url="https://www.city.yokosuka.kanagawa.jp/8345/kyuushoku/kyuusyoku-menu-open.html" data-text="小学校給食献立表オープンデータ" data-lang="ja" class="twitter-share-button">ツイート</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div></div>
+<p id="tmp_update">更新日：2023年10月25日</p>
+<p id="tmp_pageid">ページID：78255</p>
+
+</div>
+</div>
+
+<div id="tmp_main">
+<div class="wrap_col_main">
+<div class="col_main">
+<p id="tmp_honbun" class="skip">ここから本文です。</p>
+<div id="tmp_read_contents">
+<div id="tmp_readspeaker" class="rs_preserve rs_skip rs_splitbutton rs_addtools rs_exp"></div>
+<!--index_start-->
+<div id="tmp_contents">
+
+<h1>小学校給食献立表オープンデータ</h1>
+<h2>令和5年度</h2>
+<hr />
+<div class="col2">
+			<div class="col2L">
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<table class="col2">
+				<tbody>
+					<tr>
+						<div class="col2R">
+						<p><strong>10月</strong></p>
+						<ul>
+							<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0510a.csv">（CSV：32KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0510a.xlsx">（エクセル：117KB）</a></li>
+							<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0510b.csv">（CSV：32KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0510b.xlsx">（エクセル：118KB）</a></li>
+							<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0510c.csv">（CSV：32KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0510c.xlsx">（エクセル：116KB）</a></li>
+							<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0510d.csv">（CSV：27KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0510d.xlsx">（エクセル：109KB）</a></li>
+							<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0510e.csv">（CSV：32KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0510e.xlsx">（エクセル：122KB）</a></li>
+						</ul>
+						<p><strong>7月</strong></p>
+						<ul>
+							<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0507a.csv">（CSV：16KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0507a.xlsx">（エクセル：93KB）</a></li>
+							<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0507b.csv">（CSV：16KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0507b.xlsx">（エクセル：93KB）</a></li>
+							<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0507c.csv">（CSV：16KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0507c.xlsx">（エクセル：28KB）</a></li>
+							<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0507d.csv">（CSV：16KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0507d.xlsx">（エクセル：28KB）</a></li>
+							<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0507e.csv">（CSV：16KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0507e.xlsx">（エクセル：28KB）</a></li>
+						</ul>
+						<p><strong>5月</strong></p>
+						<ul>
+							<li>Aブロック<a href="/8345/kyuushoku/documents/kyushokuod0505a.csv">（CSV：25KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0505a.xlsx">（エクセル：37KB）</a></li>
+							<li>Bブロック<a href="/8345/kyuushoku/documents/kyushokuod0505b.csv">（CSV：25KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0505b.xlsx">（エクセル：37KB）</a></li>
+							<li>Cブロック<a href="/8345/kyuushoku/documents/kyushokuod0505c.csv">（CSV：25KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0505c.xlsx">（エクセル：37KB）</a></li>
+							<li>Dブロック<a href="/8345/kyuushoku/documents/kyushokuod0505d.csv">（CSV：24KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0505d.xlsx">（エクセル：37KB）</a></li>
+							<li>Eブロック<a href="/8345/kyuushoku/documents/kyushokuod0505e.csv">（CSV：24KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0505e.xlsx">（エクセル：36KB）</a></li>
+						</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			<div class="col2R">
+			<p><strong>11月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0511a.csv">（CSV：25KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0511a.xlsx">（エクセル：104KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0511b.csv">（CSV：31KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0511b.xlsx">（エクセル：108KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0511c.csv">（CSV：26KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0511c.xlsx">（エクセル：105KB）</a></li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0511d.csv">（CSV：30KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0511d.xlsx">（エクセル：111KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0511e.csv">（CSV：26KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0511e.xlsx">（エクセル：105KB）</a></li>
+			</ul>
+			<p><strong>8月・9月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod05089a.csv">（CSV：32KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod05089a.xlsx">（エクセル：51KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod05089b.csv">（CSV：32KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod05089b.xlsx">（エクセル：123KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod05089c.csv">（CSV：32KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod05089c.xlsx">（エクセル：123KB）</a></li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod05089d.csv">（CSV：32KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod05089d.xlsx">（エクセル：123KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod05089e.csv">（CSV：32KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod05089e.xlsx">（エクセル：123KB）</a></li>
+			</ul>
+			<p><strong>6月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/kyushokuod0506a.csv">（CSV：28KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0506a.xlsx">（エクセル：111KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/kyushokuod0506b.csv">（CSV：29KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0506b.xlsx">（エクセル：114KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/kyushokuod0506c.csv">（CSV：27KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0506c.xlsx">（エクセル：109KB）</a></li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/kyushokuod0506d.csv">（CSV：27KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0506d.xlsx">（エクセル：109KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/kyushokuod0506e.csv">（CSV：27KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0506e.xlsx">（エクセル：109KB）</a></li>
+			</ul>
+			<p><strong>4月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/kyushokuod0504a.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0504a.xlsx">（エクセル：110KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/kyushokuod0504b.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0504b.xlsx">（エクセル：110KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/kyushokuod0504c.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0504c.xlsx">（エクセル：110KB）</a></li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/kyushokuod0504d.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0504d.xlsx">（エクセル：110KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/kyushokuod0504e.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/kyushokuod0504e.xlsx">（エクセル：110KB）</a></li>
+			</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<h2>令和4年度</h2>
+<div class="col2">
+			<div class="col2L">
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p><strong>2月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0502a.csv">（CSV：25KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0502a.xlsx">（エクセル：113KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0502b.csv">（CSV：27KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0502b.xlsx">（エクセル：118KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0502c.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0502c.xlsx">（エクセル：105KB）</a></li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0502d.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0502d.xlsx">（エクセル：105KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0502e.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0502e.xlsx">（エクセル：105KB）</a></li>
+			</ul>
+			<p><strong>12月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0412a.csv">（CSV：28KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0412a.xlsx">（エクセル：116KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0412b.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0412b.xlsx">（エクセル：99KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0412c.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0412c.xlsx">（エクセル：100KB）</a></li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0412d.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0412d.xlsx">（エクセル：100KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0412e.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0412e.xlsx">（エクセル：99KB）</a></li>
+			</ul>
+			<p><strong>10月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0410a.csv">（CSV：29KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0410a.xlsx">（エクセル：48KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0410b.csv">（CSV：27KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0410b.xlsx">（エクセル：46KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0410c.csv">（CSV：29KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0410c.xlsx">（エクセル：50KB）</a></li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0410d.csv">（CSV：27KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0410d.xlsx">（エクセル：46KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0410e.csv">（CSV：27KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0410e.xlsx">（エクセル：45KB）</a></li>
+			</ul>
+			<p><strong>7月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0407a.csv">（CSV：23KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0407a.xlsx">（エクセル：47KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0407b.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0407b.xlsx">（エクセル：44KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0407c.csv">（CSV：23KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0407c.xlsx">（エクセル：48KB）</a></li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0407d.csv">（CSV：23KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0407d.xlsx">（エクセル：47KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0407e.csv">（CSV：23KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0407e.xlsx">（エクセル：47KB）</a></li>
+			</ul>
+			<p><strong>5月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0405a.csv">（CSV：23KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0405a.xlsx">（エクセル：107KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0405b.csv">（CSV：24KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0405b.xlsx">（エクセル：107KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0405c.csv">（CSV：23KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0405c.xlsx">（エクセル：107KB）</a></li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0405d.csv">（CSV：23KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0405d.xlsx">（エクセル：106KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0405e.csv">（CSV：23KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0405e.xlsx">（エクセル：106KB）</a></li>
+			</ul>
+			</div>
+			<div class="col2R">
+			<p><strong>3月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0503a.csv">（CSV：21KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0503a.xlsx">（エクセル：105KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0503b.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0503b.xlsx">（エクセル：109KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0503c.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0503c.xlsx">（エクセル：109KB）</a></li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0503d.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0503d.xlsx">（エクセル：109KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0503e.csv">（CSV：22KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0503e.xlsx">（エクセル：109KB）</a></li>
+			</ul>
+			<p><strong>1月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0501a.csv">（CSV：21KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0501a.xlsx">（エクセル：103KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0501b.csv">（CSV：21KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0501b.xlsx">（エクセル：103KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0501c.csv">（CSV：21KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0501c.xlsx">（エクセル：103KB）</a></li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0501d.csv">（CSV：21KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0501d.xlsx">（エクセル：103KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0501e.csv">（CSV：27KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0501e.xlsx">（エクセル：118KB）</a></li>
+			</ul>
+			<p><strong>11月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0411a.csv">（CSV：24KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0411a.xlsx">（エクセル：107KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0411b.csv">（CSV：29KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0411b.xlsx">（エクセル：119KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0411c.csv">（CSV：28KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0411c.xlsx">（エクセル：50KB）</a></li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0411d.csv">（CSV：30KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0411d.xlsx">（エクセル：54KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0411e.csv">（CSV：30KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0411e.xlsx">（エクセル：53KB）</a></li>
+			</ul>
+			<p><strong>8.9月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod04089a.csv">（CSV：32KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod04089a.xlsx">（エクセル：125KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod04089b.csv">（CSV：32KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod04089b.xlsx">（エクセル：124KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod04089c.csv">（CSV：34KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod04089c.xlsx">（エクセル：124KB）</a></li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod04089d.csv">（CSV：32KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod04089d.xlsx">（エクセル：125KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod04089e.csv">（CSV：32KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod04089e.xlsx">（エクセル：125KB）</a></li>
+			</ul>
+			<p><strong>6月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0406a.csv">（CSV：26KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0406a.xlsx">（エクセル：37KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0406b.csv">（CSV：26KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0406b.xlsx">（エクセル：37KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0406c.csv">（CSV：26KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0406c.xlsx">（エクセル：37KB）</a></li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0406d.csv">（CSV：27KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0406d.xlsx">（エクセル：37KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0406e.csv">（CSV：27KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0406e.xlsx">（エクセル：38KB）</a></li>
+			</ul>
+			<p><strong>4月</strong></p>
+			<ul>
+				<li>Aブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0404a.csv">（CSV：15KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0404a.xlsx">（エクセル：93KB）</a></li>
+				<li>Bブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0404b.csv">（CSV：15KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0404b.xlsx">（エクセル：93KB）</a></li>
+				<li>Cブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0404c.csv">（CSV：15KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0404c.xlsx">（エクセル：93KB</a>）</li>
+				<li>Dブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0404d.csv">（CSV：15KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0404d.xlsx">（エクセル：93KB）</a></li>
+				<li>Eブロック<a href="/8345/kyuushoku/documents/gakkoukyushokuod0404e.csv">（CSV：15KB）</a>/<a href="/8345/kyuushoku/documents/gakkoukyushokuod0404e.xlsx">（エクセル：93KB）</a></li>
+			</ul>
+			<p>&nbsp;</p>
+			</div>
+</div>
+
+
+
+
+
+
+</div>
+<!--index_end-->
+</div>
+
+<div id="tmp_inquiry">
+<div id="tmp_inquiry_ttl">
+<p>お問い合わせ</p>
+</div>
+<div id="tmp_inquiry_cnt">
+<form method="post" action="https://www.city.yokosuka.kanagawa.jp/cgi-bin/simple_faq/form.cgi">
+<div class="inquiry_parts">
+<p>
+<a href="/8345/index.html">教育委員会事務局学校教育部学校食育課</a></p>
+<p>横須賀市平作5丁目28番10号(横須賀市学校給食センター内)</p>
+<p>電話番号：046-850-1274</p>
+<p>ファクス：046-850-1270</p>
+<p class="inquiry_btn"><input type="submit" value="お問い合わせフォーム" /></p>
+</div>
+<p>
+<input type="hidden" name="code" value="001031008" />
+<input type="hidden" name="dept" value="8508:8010:8840:8840:9172:9670:3694:8840:10002:9670:9504:8591:9172:8840:9670:5271:8176:8674:9587:10002:3777:10002:9172:8840:9172:9504:9670:8840:8010:3777:8840:8010:9089:8010:8508:8010:9836:8010:3777:8757:9255" />
+<input type="hidden" name="page" value="/8345/kyuushoku/kyuusyoku-menu-open.html" />
+<input type="hidden" name="ENQ_RETURN_MAIL_SEND_FLG" value="1" />
+<input type="hidden" name="publish_ssl_flg" value="1" />
+</p>
+</form>
+</div>
+</div>
+
+<div id="tmp_feedback">
+<div id="tmp_feedback_ttl">
+<p>より良いウェブサイトにするためにみなさまのご意見をお聞かせください</p>
+</div>
+<div id="tmp_feedback_cnt">
+<form action="/cgi-bin/feedback/feedback.cgi" id="feedback" method="post">
+<p><input name="page_id" type="hidden" value="78255" /><input name="page_title" type="hidden" value="小学校給食献立表オープンデータ" /><input name="page_url" type="hidden" value="https://www.city.yokosuka.kanagawa.jp/8345/kyuushoku/kyuusyoku-menu-open.html" /><input name="item_cnt" type="hidden" value="3" /></p>
+<fieldset><legend>このページは見つけやすかったですか？ </legend>
+<p><input id="que1_1" name="item_1" type="radio" value="見つけやすかった" /><label for="que1_1">1：見つけやすかった</label></p>
+<p><input id="que1_2" name="item_1" type="radio" value="ふつう" /><label for="que1_2">2：ふつう</label></p>
+<p><input id="que1_3" name="item_1" type="radio" value="見つけにくかった" /><label for="que1_3">3：見つけにくかった</label></p>
+<p><input name="label_1" type="hidden" value="質問：このページは見つけやすかったですか？" /><input name="nes_1" type="hidden" value="1" /><input name="img_1" type="hidden" /><input name="img_alt_1" type="hidden" /><input name="mail_1" type="hidden" value="0" /></p>
+</fieldset>
+<fieldset><legend>このページは分かりやすかったですか？ </legend>
+<p><input id="que2_1" name="item_2" type="radio" value="分かりやすかった" /><label for="que2_1">1：分かりやすかった</label></p>
+<p><input id="que2_2" name="item_2" type="radio" value="ふつう" /><label for="que2_2">2：ふつう</label></p>
+<p><input id="que2_3" name="item_2" type="radio" value="分かりにくかった" /><label for="que2_3">3：分かりにくかった</label></p>
+<p><input name="label_2" type="hidden" value="質問：このページは分かりやすかったですか？" /><input name="nes_2" type="hidden" value="1" /><input name="img_2" type="hidden" /><input name="img_alt_2" type="hidden" /><input name="mail_2" type="hidden" value="0" /></p>
+</fieldset>
+<fieldset><legend>このページは役に立ちましたか？ </legend>
+<p><input id="que3_1" name="item_3" type="radio" value="役に立った" /><label for="que3_1">1：役に立った</label></p>
+<p><input id="que3_2" name="item_3" type="radio" value="ふつう" /><label for="que3_2">2：ふつう</label></p>
+<p><input id="que3_3" name="item_3" type="radio" value="役に立たなかった" /><label for="que3_3">3：役に立たなかった</label></p>
+<p><input name="label_3" type="hidden" value="質問：このページは役に立ちましたか？" /><input name="nes_3" type="hidden" value="1" /><input name="img_3" type="hidden" /><input name="img_alt_3" type="hidden" /><input name="mail_3" type="hidden" value="0" /></p>
+</fieldset>
+<p class="submit_btn"><input type="submit" value="送信" /></p>
+</form>
+</div>
+</div>
+
+</div>
+</div>
+<div class="wrap_col_rgt_navi">
+<div class="col_rgt_navi">
+
+<div id="tmp_lnavi">
+<div id="tmp_lnavi_ttl">
+<p><a href="/8345/kyuushoku/kyuusyoku-menu.html">小学校給食献立表</a></p>
+</div>
+<div id="tmp_lnavi_cnt">
+<ul>
+<li><a href="/8345/kyuushoku/kyuusyoku-menu-open.html">小学校給食献立表オープンデータ</a></li>
+</ul>
+</div>
+</div>
+<div id="tmp_idx_navi">
+<div id="tmp_idx_navi_ttl">
+<p>目的・テーマから探す</p>
+</div>
+<div id="tmp_idx_navi_cnt">
+<ul>
+	<li><a href="/kurashi/index.html">くらし・手続き</a></li>
+	<li><a href="/kenko/index.html">健康福祉・子育て教育</a></li>
+	<li><a href="/kanko/index.html">観光・文化・スポーツ</a></li>
+	<li><a href="/sangyo/index.html">産業・まちづくり</a></li>
+	<li><a href="/shisei/index.html">市政情報</a></li>
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+
+
+</div>
+</div>
+</div>
+
+<div id="tmp_footer">
+<div class="footer_front">
+<div class="container">
+<div class="pnavi">
+<p class="ptop used_bg_img"><a href="#tmp_header"><span>ページの先頭へ戻る</span></a></p>
+</div>
+<div class="footer_main">
+<div class="footer_info">
+<div class="footer_logo">
+<p><span>横須賀市</span></p>
+</div>
+<div class="footer_cnt">
+<address class="footer_address">
+<p><span>法人番号：3000020142018</span></p>
+<p><span>〒238-8550 神奈川県横須賀市小川町11</span></p>
+<p><span>電話番号：046-822-4000　</span><span>ファクス番号：046-822-7795</span></p>
+<p><span>開庁時間：</span> <span>月曜日から金曜日の午前8時30分から午後5時まで</span> <span class="address_sub">（土曜日・日曜日、祝日・休日、年末年始を除く）</span></p>
+</address>
+</div>
+<div class="footer_government">
+<p class="government_link"><a href="/shisei/gaiyo/access/index.html">庁舎案内</a></p>
+</div>
+</div>
+<div class="footer_nav">
+<ul class="fnavi">
+	<li><a href="/0832/sougo/menseki.html">横須賀市ホームページについて</a></li>
+	<li><a href="/sitemap.html">サイトマップ</a></li>
+</ul>
+<div class="footer_social">
+<ul>
+	<li><a href="https://twitter.com/yokosuka_city" target="_blank"><img alt="Twitter" height="40" src="/shared/site_rn2022/images/icon/sns_tw.png" width="40" /></a></li>
+	<li><a href="/0832/kouhou/sns/facebook.html"><img alt="Facebook" height="40" src="/shared/site_rn2022/images/icon/sns_fb.png" width="40" /></a></li>
+	<li><a href="https://line.me/R/ti/p/&#64;196hbuhz" target="_blank"><img alt="LINE" height="40" src="/shared/site_rn2022/images/icon/sns_line.png" width="40" /></a></li>
+	<li><a href="https://www.youtube.com/channel/UCQDVaWThh91v2lgtCCqio5w" target="_blank"><img alt="YouTube" height="40" src="/shared/site_rn2022/images/icon/sns_yt.png" width="40" /></a></li>
+	<li><a href="/0832/kouhou/sns/instagram.html"><img alt="Instagram" height="40" src="/shared/site_rn2022/images/icon/sns_ins.png" width="40" /></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer_bellow">
+<div class="container">
+<p lang="en" xml:lang="en" class="copyright">Copyright &copy; Yokosuka city. All rights reserved.</p>
+</div>
+</div>
+</div>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v16.0"></script>
+</div>
+<script type="text/javascript" src="/shared/site_rn2022/js/function.js"></script>
+<script type="text/javascript" src="/shared/site_rn2022/js/main.js"></script>
+<script type="text/javascript" src="/shared/system/js/path_info/path_info.js"></script>
+</body>
+</html>
