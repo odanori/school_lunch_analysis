@@ -1,6 +1,8 @@
+import re
 import unicodedata
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 
@@ -10,7 +12,6 @@ class Preprocessing():
 
         # csvデータ中の不明データのレコードを出力する
         self.unknown_log_path = Path('../unknown_log')
-        self.rename_cols = {}
 
     def delete_nan_row(self, data: pd.DataFrame) -> pd.DataFrame:
         cp_data = data.copy()
@@ -73,8 +74,26 @@ class Preprocessing():
         formatting_data = self.delete_unname_columns(formatting_data)
         return formatting_data
 
+    def manipulate_nan_data(self, formatting_data: pd.DataFrame) -> pd.DataFrame:
+        cp_data = formatting_data.copy()
+        # TODO: 水 以外の材料名の各種値に欠損値が出た場合は例外処理。材料に合わせた処理(入力ミスなのか、など)を検討し実装
+        missing_val_in_ingredient = formatting_data[formatting_data.isnull().any(axis=1)]['ingredient'].values
+        if len(missing_val_in_ingredient) > 1:
+            raise Exception('欠損値のある材料が複数種類あります')
+        if missing_val_in_ingredient[0] != '水':
+            raise Exception('水以外の材料に関する欠損値は未対応')
+
+        cp_data.fillna(0, inplace=True)
+        del formatting_data
+        return cp_data
+
+    def manipulate_str_data(self, formatting_data: pd.DataFrame) -> pd.DataFrame:
+
+        def calc_mean_value(str_range_value: str) -> str:
+            split_val = re.split(r"~|～", str_range_value)
+            mean_val = np.mean(list(map(str, split_val)))
+
     def data_preprocessing(self, data: pd.DataFrame, era: int, group: str) -> pd.DataFrame:
         formatting_data = self.data_formatting(data, era, group)
         print(formatting_data)
-        raise Exception()
         return formatting_data
