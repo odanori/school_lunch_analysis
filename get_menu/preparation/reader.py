@@ -1,15 +1,8 @@
 import re
 from pathlib import Path
-from typing import NamedTuple
 
 import pandas as pd
-
-
-class InfoAndData(NamedTuple):
-    era: int
-    month: int
-    group: str
-    data: pd.DataFrame
+from preparation.data_info import InfoAndData
 
 
 def get_info_and_read_data(filepath: Path) -> InfoAndData:
@@ -24,9 +17,16 @@ def get_info_and_read_data(filepath: Path) -> InfoAndData:
     else:
         era = int(data_info[:2])
     data = pd.read_csv(filepath, encoding='cp932')
+    data = add_info(data, era, group)
     return InfoAndData(era, month, group, data)
 
 
-def read_data(file_path: str) -> InfoAndData:
+def add_info(data: pd.DataFrame, era: int, group: str) -> pd.DataFrame:
+    data.insert(0, 'era', era)
+    data.insert(1, 'group', group)
+    return data
+
+
+def read_data(file_path: Path) -> InfoAndData:
     data_info = get_info_and_read_data(file_path)
     return data_info
