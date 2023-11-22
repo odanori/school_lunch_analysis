@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import List
 
+from preparation.preprocessing import Preprocessing
 from preparation.reader import read_data
 from scrapy import Spider
 from scrapy.http import Request
@@ -31,6 +32,7 @@ class MenuSpider(Spider):
             f.write(response.body)
         self.log(f'saved file {save_path}')
 
-        data = read_data(save_path)
-        print(data)
+        data_info = read_data(save_path)
+        prepro = Preprocessing()
+        prepro.data_preprocessing(data_info.data, data_info.era, data_info.group)
 
