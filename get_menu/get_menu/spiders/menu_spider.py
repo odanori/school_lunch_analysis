@@ -1,7 +1,10 @@
 from pathlib import Path
 from typing import List
 
-from preparation.preprocessing import Preprocessing
+from preparation.data_info import InfoAndData
+from preparation.preprocessor import (DatetimeChanger, ValuesComplementer,
+                                      ValuesDeleter, ValuesRenamer)
+# from preparation.preprocessing import Preprocessing
 from preparation.reader import read_data
 from scrapy import Spider
 from scrapy.http import Request
@@ -33,6 +36,15 @@ class MenuSpider(Spider):
         self.log(f'saved file {save_path}')
 
         data_info = read_data(save_path)
-        prepro = Preprocessing()
-        prepro.data_preprocessing(data_info.data, data_info.era, data_info.group)
+        # prepro = Preprocessing()
+        # prepro.data_preprocessing(data_info.data, data_info.era, data_info.group)
+        preprocessed_data = self.preprocess_data(data_info.data)
+        print(preprocessed_data)
 
+    def preprocess_data(self, data):
+        valuesdeleter = ValuesDeleter()
+        preprocessed_data = valuesdeleter.process(data)
+        preprocessed_data = ValuesRenamer.process(preprocessed_data)
+        preprocessed_data = ValuesComplementer.process(preprocessed_data)
+        preprocessed_data = DatetimeChanger.process(preprocessed_data)
+        return preprocessed_data
