@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import List
 
-from preprocess.reader import read_data
+from preparation.reader import read_data
 from scrapy import Spider
 from scrapy.http import Request
 
