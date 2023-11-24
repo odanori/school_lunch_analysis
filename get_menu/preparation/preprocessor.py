@@ -2,6 +2,7 @@ import re
 import unicodedata
 from abc import ABC, abstractmethod
 from pathlib import Path
+from typing import List, Union
 
 import numpy as np
 import pandas as pd
@@ -10,7 +11,7 @@ import pandas as pd
 class Preprocessor(ABC):
 
     @abstractmethod
-    def process(self, data: pd.DataFrame):
+    def process(self, data: pd.DataFrame) -> pd.DataFrame:
         pass
 
 
@@ -103,7 +104,15 @@ class ValuesComplementer(Preprocessor):
             mean_value = np.mean(list(map(float, split_value)))
             return str(mean_value)
 
-        cp_data.iloc[:, 6:] = cp_data.iloc[:, 6:].apply(lambda x: list(map(calc_mean_value, x)))
+        def check_str_in_list(component_list: List[Union[str, float]]) -> bool:
+            checked_list = [isinstance(comp, (str, float)) for comp in component_list]
+            if True in checked_list:
+                return True
+            else:
+                return False
+
+
+        cp_data.iloc[:, 6:] = cp_data.iloc[:, 6:].apply(lambda x: list(map(calc_mean_value, x)) if , axis=0)
         del data
         return cp_data
 
@@ -125,3 +134,20 @@ class DatetimeChanger(Preprocessor):
     def process(self, data: pd.DataFrame) -> pd.DataFrame:
         preprocessed_data = self.change_to_datetime(data)
         return preprocessed_data
+
+
+class DataProcessor:
+    def __init__(self, processors: List[Preprocessor]) -> None:
+        self.processors = processors
+
+    def process_data(self, input_data: pd.DataFrame) -> pd.DataFrame:
+        processed_data = input_data
+        for processor in self.processors:
+            processed_data = processor.process(processed_data)
+        return processed_data
+
+
+def data_processor(data: pd.DataFrame) -> pd.DataFrame:
+    processors = [ValuesDeleter(), ValuesRenamer(), ValuesComplementer(), DatetimeChanger()]
+    result = DataProcessor(processors).process_data(data)
+    return result

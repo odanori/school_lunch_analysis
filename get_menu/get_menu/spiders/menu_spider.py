@@ -2,12 +2,13 @@ from pathlib import Path
 from typing import List
 
 from preparation.data_info import InfoAndData
-from preparation.preprocessor import (DatetimeChanger, ValuesComplementer,
-                                      ValuesDeleter, ValuesRenamer)
-# from preparation.preprocessing import Preprocessing
+from preparation.preprocessor import data_processor
 from preparation.reader import read_data
 from scrapy import Spider
 from scrapy.http import Request
+
+# from preparation.preprocessing import Preprocessing
+
 
 
 class MenuSpider(Spider):
@@ -38,13 +39,17 @@ class MenuSpider(Spider):
         data_info = read_data(save_path)
         # prepro = Preprocessing()
         # prepro.data_preprocessing(data_info.data, data_info.era, data_info.group)
-        preprocessed_data = self.preprocess_data(data_info.data)
+        # preprocessed_data = self.preprocess_data(data_info.data)
+        preprocessed_data = data_processor(data_info.data)
         print(preprocessed_data)
 
-    def preprocess_data(self, data):
-        valuesdeleter = ValuesDeleter()
-        preprocessed_data = valuesdeleter.process(data)
-        preprocessed_data = ValuesRenamer.process(preprocessed_data)
-        preprocessed_data = ValuesComplementer.process(preprocessed_data)
-        preprocessed_data = DatetimeChanger.process(preprocessed_data)
-        return preprocessed_data
+    # def preprocess_data(self, data):
+    #     valuesdeleter = ValuesDeleter()
+    #     valuesrenamer = ValuesRenamer()
+    #     valuescomplementer = ValuesComplementer()
+    #     datetimechanger = DatetimeChanger()
+    #     preprocessed_data = valuesdeleter.process(data)
+    #     preprocessed_data = valuesrenamer.process(preprocessed_data)
+    #     preprocessed_data = valuescomplementer.process(preprocessed_data)
+    #     preprocessed_data = datetimechanger.process(preprocessed_data)
+    #     return preprocessed_data
