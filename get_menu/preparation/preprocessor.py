@@ -92,7 +92,7 @@ class ValuesManipulator(Preprocessor):
         # if missing_val_in_ingredient[0] != '水':
         #     raise Exception('水以外の材料に関する欠損値は未対応')
 
-        cp_data.iloc[:, 6:].fillna(0, inplace=True)
+        cp_data.iloc[:, 5:].fillna(0.0, inplace=True)
         del data
         return cp_data
 
