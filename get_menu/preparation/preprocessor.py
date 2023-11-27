@@ -142,9 +142,10 @@ class DataProcessor:
         self.processors = processors
 
     def process_data(self, input_data: pd.DataFrame) -> pd.DataFrame:
-        processed_data = input_data
+        processed_data = input_data.copy()
         for processor in self.processors:
             processed_data = processor.process(processed_data)
+        del input_data
         return processed_data
 
 
