@@ -2,14 +2,10 @@ from pathlib import Path
 from typing import List
 
 import pandas as pd
-from preparation.data_info import InfoAndData
 from preparation.preprocessor import data_processor
 from preparation.reader import read_data
 from scrapy import Spider
 from scrapy.http import Request
-
-# from preparation.preprocessing import Preprocessing
-
 
 
 class MenuSpider(Spider):
@@ -30,7 +26,7 @@ class MenuSpider(Spider):
             headers = {'Accept-Encoding': 'identity'}
             yield Request(url=response.urljoin(csv_link), callback=self.data_preparation, headers=headers)
 
-    def save_csv(self, response):
+    def save_csv(self, response) -> Path:
         filename = response.url.split('/')[-1]
         save_path = self.download_path / filename
         with open(save_path, 'wb') as f:
