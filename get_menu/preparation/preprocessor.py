@@ -80,7 +80,7 @@ class ValuesRenamer(Preprocessor):
         return processed_data
 
 
-class ValuesComplementer(Preprocessor):
+class ValuesManipulator(Preprocessor):
 
     def complement_nan_in_numerical_columns(self, data: pd.DataFrame) -> pd.DataFrame:
         cp_data = data.copy()
@@ -111,8 +111,7 @@ class ValuesComplementer(Preprocessor):
             else:
                 return False
 
-
-        cp_data.iloc[:, 6:] = cp_data.iloc[:, 6:].apply(lambda x: list(map(calc_mean_value, x)) if , axis=0)
+        cp_data.iloc[:, 6:] = cp_data.iloc[:, 6:].apply(lambda x: list(map(calc_mean_value, x)), axis=0)
         del data
         return cp_data
 
@@ -148,6 +147,6 @@ class DataProcessor:
 
 
 def data_processor(data: pd.DataFrame) -> pd.DataFrame:
-    processors = [ValuesDeleter(), ValuesRenamer(), ValuesComplementer(), DatetimeChanger()]
+    processors = [ValuesDeleter(), ValuesRenamer(), ValuesManipulator(), DatetimeChanger()]
     result = DataProcessor(processors).process_data(data)
     return result
