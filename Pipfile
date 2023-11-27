@@ -12,6 +12,7 @@ scikit-learn = "*"
 pathlib = "*"
 typing = "*"
 selenium = "*"
+scrapy = "*"
 
 [dev-packages]
 
