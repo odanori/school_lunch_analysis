@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import List
 
+import pandas as pd
 from preparation.data_info import InfoAndData
 from preparation.preprocessor import data_processor
 from preparation.reader import read_data
@@ -27,7 +28,7 @@ class MenuSpider(Spider):
 
         for csv_link in csv_links:
             headers = {'Accept-Encoding': 'identity'}
-            yield Request(url=response.urljoin(csv_link), callback=self.save_csv, headers=headers)
+            yield Request(url=response.urljoin(csv_link), callback=self.data_preparation, headers=headers)
 
     def save_csv(self, response):
         filename = response.url.split('/')[-1]
@@ -35,21 +36,14 @@ class MenuSpider(Spider):
         with open(save_path, 'wb') as f:
             f.write(response.body)
         self.log(f'saved file {save_path}')
+        return save_path
 
-        data_info = read_data(save_path)
-        # prepro = Preprocessing()
-        # prepro.data_preprocessing(data_info.data, data_info.era, data_info.group)
-        # preprocessed_data = self.preprocess_data(data_info.data)
+    def process_csv(self, data_path: Path) -> pd.DataFrame:
+        data_info = read_data(data_path)
         preprocessed_data = data_processor(data_info.data)
-        print(preprocessed_data)
+        return preprocessed_data
 
-    # def preprocess_data(self, data):
-    #     valuesdeleter = ValuesDeleter()
-    #     valuesrenamer = ValuesRenamer()
-    #     valuescomplementer = ValuesComplementer()
-    #     datetimechanger = DatetimeChanger()
-    #     preprocessed_data = valuesdeleter.process(data)
-    #     preprocessed_data = valuesrenamer.process(preprocessed_data)
-    #     preprocessed_data = valuescomplementer.process(preprocessed_data)
-    #     preprocessed_data = datetimechanger.process(preprocessed_data)
-    #     return preprocessed_data
+    def data_preparation(self, response):
+        save_path = self.save_csv(response)
+        preprocessed_data = self.process_csv(save_path)
+        print(preprocessed_data)
