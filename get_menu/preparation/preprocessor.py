@@ -23,7 +23,7 @@ class ValuesDeleter(Preprocessor):
 
     def delete_nan_row(self, data: pd.DataFrame) -> pd.DataFrame:
         cp_data = data.copy()
-        cp_data.dropna(how='all', axis=0, inplace=True)
+        cp_data.dropna(thresh=3, axis=0, inplace=True)
         del data
         return cp_data
 
