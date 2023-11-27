@@ -82,7 +82,7 @@ class ValuesRenamer(Preprocessor):
 
 class ValuesManipulator(Preprocessor):
 
-    def complement_nan_in_numerical_columns(self, data: pd.DataFrame) -> pd.DataFrame:
+    def manipulate_nan_in_numerical_columns(self, data: pd.DataFrame) -> pd.DataFrame:
         cp_data = data.copy()
         # TODO: 材料ごとの欠損値対応は後程実装(現状は 材料名=水 以外欠損値なし)
 
@@ -96,7 +96,7 @@ class ValuesManipulator(Preprocessor):
         del data
         return cp_data
 
-    def complement_str_numerical_value(self, data: pd.DataFrame) -> pd.DataFrame:
+    def manipulate_str_numerical_value(self, data: pd.DataFrame) -> pd.DataFrame:
         cp_data = data.copy()
 
         def calc_mean_value(str_range_value: str) -> str:
@@ -116,8 +116,8 @@ class ValuesManipulator(Preprocessor):
         return cp_data
 
     def process(self, data: pd.DataFrame) -> pd.DataFrame:
-        preprocessed_data = self.complement_nan_in_numerical_columns(data)
-        preprocessed_data = self.complement_str_numerical_value(preprocessed_data)
+        preprocessed_data = self.manipulate_nan_in_numerical_columns(data)
+        preprocessed_data = self.manipulate_str_numerical_value(preprocessed_data)
         return preprocessed_data
 
 
