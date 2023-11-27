@@ -43,7 +43,7 @@ class ValuesDeleter(Preprocessor):
 
     def process(self, data: pd.DataFrame) -> pd.DataFrame:
         processed_data = self.delete_nan_row(data)
-        processed_data = self.delete_unname_columns(data)
+        processed_data = self.delete_unname_columns(processed_data)
         return processed_data
 
 
