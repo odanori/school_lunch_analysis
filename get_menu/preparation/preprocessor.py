@@ -110,14 +110,16 @@ class ValuesManipulator(Preprocessor):
                 return True
             else:
                 return False
-
-        cp_data.iloc[:, 6:] = cp_data.iloc[:, 6:].apply(lambda x: list(map(calc_mean_value, x)), axis=0)
+        cp_data = cp_data.astype(str)
+        cp_data.iloc[:, 5:] = cp_data.iloc[:, 5:].apply(lambda x: list(map(calc_mean_value, x)), axis=0)
+        cp_data.iloc[:, 5:] = cp_data.iloc[:, 5:].astype(float)
         del data
         return cp_data
 
     def process(self, data: pd.DataFrame) -> pd.DataFrame:
-        preprocessed_data = self.manipulate_nan_in_numerical_columns(data)
-        preprocessed_data = self.manipulate_str_numerical_value(preprocessed_data)
+
+        preprocessed_data = self.manipulate_str_numerical_value(data)
+        preprocessed_data = self.manipulate_nan_in_numerical_columns(preprocessed_data)
         return preprocessed_data
 
 
