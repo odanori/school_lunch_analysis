@@ -23,7 +23,7 @@ def run_spider():
     process.start()
 
 
-if __name__ == '__main__':
+def run():
     args = make_parser()
     if args.runtype == 'getdata':
         run_spider()
@@ -31,3 +31,7 @@ if __name__ == '__main__':
         raise Exception('可視化は未実装')
     else:
         raise ValueError('getdata か view を指定してください')
+
+
+if __name__ == '__main__':
+    run()
