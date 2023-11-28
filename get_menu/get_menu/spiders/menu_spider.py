@@ -1,11 +1,12 @@
 from pathlib import Path
 from typing import List
 
-import pandas as pd
-from preparation.preprocessor import data_processor
-from preparation.reader import read_data
 from scrapy import Spider
 from scrapy.http import Request
+
+from get_menu.preparation.data_info import InfoAndData
+from get_menu.preparation.preprocessor import data_processor
+from get_menu.preparation.reader import read_data
 
 
 class MenuSpider(Spider):
@@ -34,12 +35,13 @@ class MenuSpider(Spider):
         self.log(f'saved file {save_path}')
         return save_path
 
-    def process_csv(self, data_path: Path) -> pd.DataFrame:
+    def process_csv(self, data_path: Path) -> InfoAndData:
         data_info = read_data(data_path)
         preprocessed_data = data_processor(data_info.data)
-        return preprocessed_data
+        preprocessed_data_info = InfoAndData(data_info.era, data_info.month, data_info.group, preprocessed_data)
+        return preprocessed_data_info
 
     def data_preparation(self, response):
         save_path = self.save_csv(response)
-        preprocessed_data = self.process_csv(save_path)
-        print(preprocessed_data)
+        preprocessed_data_info = self.process_csv(save_path)
+        print(preprocessed_data_info)
