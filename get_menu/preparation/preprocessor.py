@@ -54,8 +54,8 @@ class ValuesRenamer(Preprocessor):
         cp_data = data.copy()
         half_width_cols = {}
         english_cols = {
-            '献立名': 'menu', '材料名': 'ingredient', '分量(g)': 'amount[g]', 'エネルギー(kcal)': 'carolies[kcal]',
-            'たんぱく質(g)': 'protein[g]', '脂質(g)': 'fat[g]', 'ナトリウム(mg)': 'sodium[mg]'
+            '献立名': 'menu', '材料名': 'ingredient', '分量(g)': 'amount_g', 'エネルギー(kcal)': 'carolies_kcal',
+            'たんぱく質(g)': 'protein_g', '脂質(g)': 'fat_g', 'ナトリウム(mg)': 'sodium_mg'
             }
 
         columns = cp_data.columns.values
