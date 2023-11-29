@@ -92,7 +92,7 @@ class ValuesManipulator(Preprocessor):
         # if missing_val_in_ingredient[0] != '水':
         #     raise Exception('水以外の材料に関する欠損値は未対応')
 
-        cp_data.iloc[:, 5:].fillna(0.0, inplace=True)
+        cp_data.iloc[:, 6:].fillna(0.0, inplace=True)
         del data
         return cp_data
 
@@ -111,8 +111,8 @@ class ValuesManipulator(Preprocessor):
             else:
                 return False
         cp_data = cp_data.astype(str)
-        cp_data.iloc[:, 5:] = cp_data.iloc[:, 5:].apply(lambda x: list(map(calc_mean_value, x)), axis=0)
-        cp_data.iloc[:, 5:] = cp_data.iloc[:, 5:].astype(float)
+        cp_data.iloc[:, 6:] = cp_data.iloc[:, 6:].apply(lambda x: list(map(calc_mean_value, x)), axis=0)
+        cp_data.iloc[:, 6:] = cp_data.iloc[:, 6:].astype(float)
         del data
         return cp_data
 
@@ -127,8 +127,8 @@ class DatetimeChanger(Preprocessor):
 
     def change_to_datetime(self, data: pd.DataFrame) -> pd.DataFrame:
         cp_data = data.copy()
-        datetime_data = pd.to_datetime(cp_data.iloc[:, 2])
-        cp_data.iloc[:, 2] = datetime_data
+        datetime_data = pd.to_datetime(cp_data.iloc[:, 3])
+        cp_data.iloc[:, 3] = datetime_data
         del data
         return cp_data
 

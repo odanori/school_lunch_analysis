@@ -8,5 +8,5 @@ import scrapy
 
 class GetMenuItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    csv_data = scrapy.Field()
+    filename = scrapy.Field()
