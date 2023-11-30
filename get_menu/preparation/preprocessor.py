@@ -1,3 +1,4 @@
+import datetime
 import re
 import unicodedata
 from abc import ABC, abstractmethod
@@ -126,8 +127,28 @@ class DatetimeChanger(Preprocessor):
         del data
         return cp_data
 
+    def add_era_name(self, data: pd.DataFrame) -> pd.DataFrame:
+        def check_era(date: datetime.datetime):
+            era_dict = {'令和': datetime.datetime(2019, 5, 1),
+                        '平成': datetime.datetime(1989, 1, 8),
+                        '昭和': datetime.datetime(1926, 12, 25)}
+            if era_dict['令和'] <= date:
+                era_name = '令和'
+            elif era_dict['平成'] <= date:
+                era_name = '平成'
+            elif era_dict['昭和'] <= date:
+                era_name = '昭和'
+            else:
+                era_name = None
+            return era_name
+        cp_data = data.copy()
+        cp_data['era_name'] = cp_data.iloc[:, 3].apply(lambda x: check_era(x))
+        del data
+        return cp_data
+
     def process(self, data: pd.DataFrame) -> pd.DataFrame:
         preprocessed_data = self.change_to_datetime(data)
+        preprocessed_data = self.add_era_name(preprocessed_data)
         return preprocessed_data
 
 
