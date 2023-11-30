@@ -14,7 +14,7 @@ from get_menu.preparation.preprocessor import data_processor
 # import re
 
 
-class DataProcessPipeline:
+class DataProcess:
 
     def process_item(self, item, spider):
 

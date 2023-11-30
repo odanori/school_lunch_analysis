@@ -34,6 +34,7 @@ class MenuSpider(Spider):
         item['era'] = era
         item['group'] = group
         item['month'] = month
+
         yield item
 
     def extract_info_from_filename(self, filename):
