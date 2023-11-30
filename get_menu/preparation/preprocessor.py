@@ -23,7 +23,7 @@ class ValuesDeleter(Preprocessor):
 
     def delete_nan_row(self, data: pd.DataFrame) -> pd.DataFrame:
         cp_data = data.copy()
-        cp_data.dropna(thresh=3, axis=0, inplace=True)
+        cp_data.dropna(thresh=4, axis=0, inplace=True)
         del data
         return cp_data
 
@@ -92,7 +92,7 @@ class ValuesManipulator(Preprocessor):
         # if missing_val_in_ingredient[0] != '水':
         #     raise Exception('水以外の材料に関する欠損値は未対応')
 
-        cp_data.iloc[:, 6:].fillna(0.0, inplace=True)
+        cp_data.iloc[:, 6:] = cp_data.iloc[:, 6:].fillna(0)
         del data
         return cp_data
 
@@ -110,9 +110,10 @@ class ValuesManipulator(Preprocessor):
         return cp_data
 
     def process(self, data: pd.DataFrame) -> pd.DataFrame:
+        preprocessed_data = self.manipulate_nan_in_numerical_columns(data)
+        preprocessed_data = self.manipulate_str_numerical_value(preprocessed_data)
+        # preprocessed_data = self.manipulate_nan_in_numerical_columns(preprocessed_data)
 
-        preprocessed_data = self.manipulate_str_numerical_value(data)
-        preprocessed_data = self.manipulate_nan_in_numerical_columns(preprocessed_data)
         return preprocessed_data
 
 

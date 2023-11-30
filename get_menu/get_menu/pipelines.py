@@ -26,7 +26,7 @@ class DataProcessPipeline:
         return item
 
     def read_byte_csv(self, csv_data):
-        data = pd.read_csv(io.BytesIO(csv_data), encoding='cp932')
+        data = pd.read_csv(io.BytesIO(csv_data), encoding='cp932', index_col=None)
         return data
 
     def extract_info_from_filename(self, filename):
