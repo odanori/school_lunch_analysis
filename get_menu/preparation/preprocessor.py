@@ -103,13 +103,6 @@ class ValuesManipulator(Preprocessor):
             split_value = re.split(r"~|～", str_range_value)
             mean_value = np.mean(list(map(float, split_value)))
             return str(mean_value)
-
-        def check_str_in_list(component_list: List[Union[str, float]]) -> bool:
-            checked_list = [isinstance(comp, (str, float)) for comp in component_list]
-            if True in checked_list:
-                return True
-            else:
-                return False
         cp_data = cp_data.astype(str)
         cp_data.iloc[:, 6:] = cp_data.iloc[:, 6:].apply(lambda x: list(map(calc_mean_value, x)), axis=0)
         cp_data.iloc[:, 6:] = cp_data.iloc[:, 6:].astype(float)
