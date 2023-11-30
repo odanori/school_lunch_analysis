@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 from typing import List
 
@@ -21,42 +22,28 @@ class MenuSpider(Spider):
     def parse(self, response):
         csv_links = response.css('a[href$=".csv"]::attr(href)').extract()
         for csv_link in csv_links:
-            # headers = {'Acceept-Encoding': 'identity'}
-            # yield Request(url=response.urljoin(csv_link), callback=self.parse_csv, headers=headers)
             yield Request(url=response.urljoin(csv_link), callback=self.parse_csv)
 
     def parse_csv(self, response):
         csv_data = response.body
         filename = response.url.split('/')[-1]
-        # print(pd.read_csv(io.BytesIO(csv_data), encoding='cp932'))
+        era, group, month = self.extract_info_from_filename(filename)
         item = GetMenuItem()
         item['csv_data'] = csv_data
         item['filename'] = filename
+        item['era'] = era
+        item['group'] = group
+        item['month'] = month
         yield item
 
-
-    # def parse(self, response):
-    #     csv_links = response.css('a[href$=".csv"]::attr(href)').extract()
-
-    #     for csv_link in csv_links:
-    #         headers = {'Accept-Encoding': 'identity'}
-    #         yield Request(url=response.urljoin(csv_link), callback=self.data_preparation, headers=headers)
-
-    # def save_csv(self, response) -> Path:
-    #     filename = response.url.split('/')[-1]
-    #     save_path = self.download_path / filename
-    #     with open(save_path, 'wb') as f:
-    #         f.write(response.body)
-    #     self.log(f'saved file {save_path}')
-    #     return save_path
-
-    # def process_csv(self, data_path: Path) -> InfoAndData:
-    #     data_info = read_data(data_path)
-    #     preprocessed_data = data_processor(data_info.data)
-    #     preprocessed_data_info = InfoAndData(data_info.era, data_info.month, data_info.group, preprocessed_data)
-    #     return preprocessed_data_info
-
-    # def data_preparation(self, response):
-    #     save_path = self.save_csv(response)
-    #     preprocessed_data_info = self.process_csv(save_path)
-    #     print(preprocessed_data_info)
+    def extract_info_from_filename(self, filename):
+        info: str = re.split(r'od|\.', filename)[-2]
+        group = info[-1]
+        month = int(info[2:-1])
+        if month > 12:
+            month = int(str(month)[1])
+        if month < 4:
+            era = int(info[:2]) - 1
+        else:
+            era = int(info[:2])
+        return era, group, month

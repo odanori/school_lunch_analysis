@@ -10,3 +10,6 @@ class GetMenuItem(scrapy.Item):
     # define the fields for your item here like:
     csv_data = scrapy.Field()
     filename = scrapy.Field()
+    era = scrapy.Field()
+    group = scrapy.Field()
+    month = scrapy.Field()
