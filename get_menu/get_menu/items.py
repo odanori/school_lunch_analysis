@@ -11,5 +11,5 @@ class GetMenuItem(scrapy.Item):
     csv_data = scrapy.Field()
     filename = scrapy.Field()
     era = scrapy.Field()
-    group = scrapy.Field()
+    area_group = scrapy.Field()
     month = scrapy.Field()

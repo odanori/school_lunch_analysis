@@ -25,21 +25,22 @@ class MenuSpider(Spider):
             yield Request(url=response.urljoin(csv_link), callback=self.parse_csv)
 
     def parse_csv(self, response):
+
         csv_data = response.body
         filename = response.url.split('/')[-1]
-        era, group, month = self.extract_info_from_filename(filename)
+        era, area_group, month = self.extract_info_from_filename(filename)
         item = GetMenuItem()
         item['csv_data'] = csv_data
         item['filename'] = filename
         item['era'] = era
-        item['group'] = group
+        item['area_group'] = area_group
         item['month'] = month
 
         yield item
 
     def extract_info_from_filename(self, filename):
         info: str = re.split(r'od|\.', filename)[-2]
-        group = info[-1]
+        area_group = info[-1]
         month = int(info[2:-1])
         if month > 12:
             month = int(str(month)[1])
@@ -47,4 +48,4 @@ class MenuSpider(Spider):
             era = int(info[:2]) - 1
         else:
             era = int(info[:2])
-        return era, group, month
+        return era, area_group, month

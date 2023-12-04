@@ -30,16 +30,17 @@ class DataProcess:
 
     def add_info_to_data(self, data, era, group, month):
         data.insert(0, 'era', era)
-        data.insert(1, 'group', group)
+        data.insert(1, 'area_group', group)
         data.insert(2, 'month', month)
+
         return data
 
     def prepare_base_data(self, item):
         csv_data = item['csv_data']
         era = item['era']
-        group = item['group']
+        area_group = item['area_group']
         month = item['month']
         data = self.read_byte_csv(csv_data)
-        base_data = self.add_info_to_data(data, era, group, month)
+        base_data = self.add_info_to_data(data, era, area_group, month)
         del data
         return base_data
