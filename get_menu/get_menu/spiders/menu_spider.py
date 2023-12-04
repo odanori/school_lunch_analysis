@@ -15,10 +15,6 @@ class MenuSpider(Spider):
     start_urls: List[str] = ['https://www.city.yokosuka.kanagawa.jp/8345/kyuushoku/kyuusyoku-menu-open.html']
     csv_encoding = 'cp932'
 
-    download_path = Path('./tmp')
-    if not download_path.exists():
-        download_path.mkdir()
-
     def parse(self, response):
         csv_links = response.css('a[href$=".csv"]::attr(href)').extract()
         for csv_link in csv_links:

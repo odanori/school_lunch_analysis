@@ -65,6 +65,7 @@ DOWNLOAD_DELAY = 3
 ITEM_PIPELINES = {
    "scrapy.pipelines.files.FilesPipeline": 1,
    "get_menu.get_menu.pipelines.DataProcess": 300,
+   "get_menu.get_menu.pipelines.DatabaseInsertProcessedData": 400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -99,3 +100,8 @@ FEED_EXPORT_ENCODING = "utf-8"
 
 # デバッグ
 LOG_LEVEL = 'DEBUG'
+
+# PostgreSQLの接続情報
+POSTGRES_URI = "postgresql://postgres:postgres@localhost:5432/lunch_menu"
+POSTGRES_FILENAME_TABLE = "filenames"
+POSTGRES_BASE_TABLE_NAME = "menu"
