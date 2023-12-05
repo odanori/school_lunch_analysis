@@ -2,7 +2,8 @@ import re
 from pathlib import Path
 
 import pandas as pd
-from preparation.data_info import InfoAndData
+
+from get_menu.preparation.data_info import InfoAndData
 
 
 def get_info_and_read_data(filepath: Path) -> InfoAndData:

@@ -1,2 +1,4 @@
 # dataディレクトリの中身は無視
 data/
+.scrapy/
+get_menu/tmp/

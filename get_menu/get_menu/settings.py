@@ -9,8 +9,8 @@
 
 BOT_NAME = "get_menu"
 
-SPIDER_MODULES = ["get_menu.spiders"]
-NEWSPIDER_MODULE = "get_menu.spiders"
+SPIDER_MODULES = ["get_menu.get_menu.spiders"]
+NEWSPIDER_MODULE = "get_menu.get_menu.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -20,7 +20,7 @@ NEWSPIDER_MODULE = "get_menu.spiders"
 ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 4
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -62,9 +62,12 @@ DOWNLOAD_DELAY = 3
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "get_menu.pipelines.GetMenuPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "scrapy.pipelines.files.FilesPipeline": 1,
+   "get_menu.get_menu.pipelines.DownloadData": 200,
+   "get_menu.get_menu.pipelines.DataProcess": 300,
+   "get_menu.get_menu.pipelines.DatabaseInsertProcessedData": 400,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -95,3 +98,11 @@ FEED_EXPORT_ENCODING = "utf-8"
 # csv出力の設定
 # FEED_FORMAT = 'csv'
 # FEED_URI = 'output_csv'
+
+# デバッグ
+LOG_LEVEL = 'DEBUG'
+
+# PostgreSQLの接続情報
+POSTGRES_URI = "postgresql://postgres:postgres@localhost:5432/lunch_menu"
+POSTGRES_FILENAME_TABLE = "filenames"
+POSTGRES_BASE_TABLE_NAME = "menu"
