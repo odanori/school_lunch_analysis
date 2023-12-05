@@ -42,7 +42,7 @@ class DownloadData:
     def close_spider(self, spider):
         self.engine.dispose()
 
-    def check_exist_in_db(self, item, spider):
+    def process_item(self, item, spider):
         filename = item['filename']
         session = self.session()
         try:
@@ -51,14 +51,11 @@ class DownloadData:
             session.add(FilenameTable(filename=filename))
             session.commit()
             spider.log(f'{filename}が登録されました')
+            return item
         except Exception as e:
             spider.log(f'登録エラー:{e}')
         finally:
             session.close()
-
-    def process_item(self, item, spider):
-        self.check_exist_in_db(item, spider)
-        return item
 
 
 class DataProcess:
@@ -90,12 +87,15 @@ class DataProcess:
         return base_data
 
     def process_item(self, item, spider):
-        base_data = self.prepare_base_data(item)
-        preprocessed_data = data_processor(base_data)
-        tmp_csv_path = self.download_path / item['filename']
-        preprocessed_data.to_csv(tmp_csv_path, encoding='utf-8', index=False)
-        item['csv_data'] = tmp_csv_path
-        return item
+        if item is None:
+            spider.log('DataProcessをスキップします')
+        else:
+            base_data = self.prepare_base_data(item)
+            preprocessed_data = data_processor(base_data)
+            tmp_csv_path = self.download_path / item['filename']
+            preprocessed_data.to_csv(tmp_csv_path, encoding='utf-8', index=False)
+            item['csv_data'] = tmp_csv_path
+            return item
 
 
 class DatabaseInsertProcessedData:
@@ -140,15 +140,18 @@ class DatabaseInsertProcessedData:
         return table_name
 
     def process_item(self, item, spider):
-        table_name = self.chose_insert_table(item)
-        csv_data = pd.read_csv(item['csv_data'])
-        try:
-            csv_data.to_sql(table_name, self.engine, if_exists='append', index=False)
-        except Exception as e:
-            filename = item['filename']
-            spider.logger.error(f'データ追加に失敗しました: {filename}, {e}')
-            raise DropItem('DBへデータ追加失敗: 終了')
+        if item is None:
+            spider.log('DatabaseInsertProcessedDataをスキップします')
+        else:
+            table_name = self.chose_insert_table(item)
+            csv_data = pd.read_csv(item['csv_data'])
+            try:
+                csv_data.to_sql(table_name, self.engine, if_exists='append', index=False)
+            except Exception as e:
+                filename = item['filename']
+                spider.logger.error(f'データ追加に失敗しました: {filename}, {e}')
+                raise DropItem('DBへデータ追加失敗: 終了')
 
-        del csv_data
-        item['csv_data'].unlink()
-        return item
+            del csv_data
+            item['csv_data'].unlink()
+            return item
