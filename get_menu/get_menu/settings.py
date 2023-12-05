@@ -65,6 +65,8 @@ DOWNLOAD_DELAY = 3
 ITEM_PIPELINES = {
    "scrapy.pipelines.files.FilesPipeline": 1,
    "get_menu.get_menu.pipelines.DownloadData": 200,
+   "get_menu.get_menu.pipelines.DataProcess": 300,
+   "get_menu.get_menu.pipelines.DatabaseInsertProcessedData": 400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
