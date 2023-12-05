@@ -10,12 +10,56 @@ import pandas as pd
 import psycopg2
 from scrapy.exceptions import DropItem, NotConfigured
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 from get_menu.preparation.preprocessor import data_processor
+from get_menu.preparation.table_base import Base, FilenameTable
 
 # useful for handling different item types with a single interface
 # from itemadapter import ItemAdapter
 # import re
+
+
+class DownloadData:
+    def __init__(self, postgres_uri, filename_table_name):
+        self.postgres_uri = postgres_uri
+        self.filename_table_name = filename_table_name
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        postgres_uri = crawler.settings.get("POSTGRES_URI")
+        filename_table_name = crawler.settings.get("POSTGRES_FILENAME_TABLE")
+        if not postgres_uri:
+            raise NotConfigured("DBのURIが正しく設定されていません")
+        if not filename_table_name:
+            raise NotConfigured("DBへ登録されているデータファイル名参照テーブル名が正しく設定されていません")
+        return cls(postgres_uri, filename_table_name)
+
+    def open_spider(self, spider):
+        self.engine = create_engine(self.postgres_uri)
+        Base.metadata.bind = self.engine
+        self.session = sessionmaker(bind=self.engine)
+
+    def close_spider(self, spider):
+        self.engine.dispose()
+
+    def check_exist_in_db(self, item, spider):
+        filename = item['filename']
+        session = self.session()
+        try:
+            if session.query(FilenameTable).filter_by(filename=filename).first():
+                raise DropItem(f'{filename}は既にDBに存在します')
+            session.add(FilenameTable(filename=filename))
+            session.commit()
+            spider.log(f'{filename}が登録されました')
+        except Exception as e:
+            spider.log(f'登録エラー:{e}')
+        finally:
+            session.close()
+
+    def process_item(self, item, spider):
+        self.check_exist_in_db(item, spider)
+        return item
 
 
 class DataProcess:
