@@ -87,12 +87,6 @@ class ValuesManipulator(Preprocessor):
         cp_data = data.copy()
         # TODO: 材料ごとの欠損値対応は後程実装(現状は 材料名=水 以外欠損値なし)
 
-        # missing_val_in_ingredient = data[data.isnull().any(axis=1)]['ingredient'].values
-        # if len(missing_val_in_ingredient) > 1:
-        #     raise Exception('欠損値のある材料が複数種類あります')
-        # if missing_val_in_ingredient[0] != '水':
-        #     raise Exception('水以外の材料に関する欠損値は未対応')
-
         cp_data.iloc[:, 6:] = cp_data.iloc[:, 6:].fillna(0)
         del data
         return cp_data
@@ -113,7 +107,6 @@ class ValuesManipulator(Preprocessor):
     def process(self, data: pd.DataFrame) -> pd.DataFrame:
         preprocessed_data = self.manipulate_nan_in_numerical_columns(data)
         preprocessed_data = self.manipulate_str_numerical_value(preprocessed_data)
-        # preprocessed_data = self.manipulate_nan_in_numerical_columns(preprocessed_data)
 
         return preprocessed_data
 
