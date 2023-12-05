@@ -36,6 +36,7 @@ class DownloadData:
 
     def open_spider(self, spider):
         self.engine = create_engine(self.postgres_uri)
+        Base.metadata.create_all(self.engine)
         Base.metadata.bind = self.engine
         self.session = sessionmaker(bind=self.engine)
 
