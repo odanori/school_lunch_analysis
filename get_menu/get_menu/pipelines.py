@@ -68,15 +68,6 @@ class DataProcess:
         if not self.download_path.exists():
             self.download_path.mkdir()
 
-    def process_item(self, item, spider):
-
-        base_data = self.prepare_base_data(item)
-        preprocessed_data = data_processor(base_data)
-        tmp_csv_path = self.download_path / item['filename']
-        preprocessed_data.to_csv(tmp_csv_path, encoding='utf-8', index=False)
-        item['csv_data'] = tmp_csv_path
-        return item
-
     def read_byte_csv(self, csv_data):
         data = pd.read_csv(io.BytesIO(csv_data), encoding='cp932', index_col=None)
         return data
@@ -97,6 +88,16 @@ class DataProcess:
         base_data = self.add_info_to_data(data, era, area_group, month)
         del data
         return base_data
+
+    def process_item(self, item, spider):
+        base_data = self.prepare_base_data(item)
+        preprocessed_data = data_processor(base_data)
+        tmp_csv_path = self.download_path / item['filename']
+        preprocessed_data.to_csv(tmp_csv_path, encoding='utf-8', index=False)
+        item['csv_data'] = tmp_csv_path
+        return item
+
+
 class DatabaseInsertProcessedData:
     def __init__(self, postgres_uri, base_table_name):
         self.postgres_uri = postgres_uri
