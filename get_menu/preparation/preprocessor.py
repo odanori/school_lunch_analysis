@@ -3,7 +3,7 @@ import re
 import unicodedata
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import List, Union
+from typing import List
 
 import numpy as np
 import pandas as pd
