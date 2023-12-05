@@ -12,7 +12,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from get_menu.preparation.preprocessor import data_processor
-from get_menu.preparation.table_base import Base, FilenameTable
+from get_menu.preparation.table_base import (Base, FilenameTable,
+                                             menu_table_type)
 
 # useful for handling different item types with a single interface
 # from itemadapter import ItemAdapter
@@ -147,7 +148,7 @@ class DatabaseInsertProcessedData:
             table_name = self.chose_insert_table(item)
             csv_data = pd.read_csv(item['csv_data'])
             try:
-                csv_data.to_sql(table_name, self.engine, if_exists='append', index=False)
+                csv_data.to_sql(table_name, self.engine, if_exists='append', index=False, dtype=menu_table_type)
             except Exception as e:
                 filename = item['filename']
                 spider.logger.error(f'データ追加に失敗しました: {filename}, {e}')
