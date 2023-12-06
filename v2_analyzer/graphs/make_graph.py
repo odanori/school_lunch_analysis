@@ -38,7 +38,7 @@ def plot_content(data_group: pd.DataFrame, content: str, area: str, row: int, co
     fig.add_trace(trace, row=row, col=col)
 
 
-def layout(content, graph_num, fig):
+def layout(content: str, graph_num: int, fig):
     fig.update_layout(**{f'xaxis{graph_num}': dict(dtick='M1')},
                       **{f'yaxis{graph_num}': dict(title=content)},
                       legend=dict(xanchor='left'),
