@@ -9,8 +9,8 @@
 
 BOT_NAME = "get_menu"
 
-SPIDER_MODULES = ["get_menu.get_menu.spiders"]
-NEWSPIDER_MODULE = "get_menu.get_menu.spiders"
+SPIDER_MODULES = ["v2_analyzer.get_menu.get_menu.spiders"]
+NEWSPIDER_MODULE = "v2_analyzer.get_menu.get_menu.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -64,9 +64,9 @@ DOWNLOAD_DELAY = 3
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    "scrapy.pipelines.files.FilesPipeline": 1,
-   "get_menu.get_menu.pipelines.DownloadData": 200,
-   "get_menu.get_menu.pipelines.DataProcess": 300,
-   "get_menu.get_menu.pipelines.DatabaseInsertProcessedData": 400,
+   "v2_analyzer.get_menu.get_menu.pipelines.DownloadData": 200,
+   "v2_analyzer.get_menu.get_menu.pipelines.DataProcess": 300,
+   "v2_analyzer.get_menu.get_menu.pipelines.DatabaseInsertProcessedData": 400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

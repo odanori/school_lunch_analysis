@@ -11,9 +11,9 @@ from scrapy.exceptions import DropItem, NotConfigured
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from get_menu.preparation.preprocessor import data_processor
-from get_menu.preparation.table_base import (Base, FilenameTable,
-                                             menu_table_type)
+from v2_analyzer.get_menu.preparation.preprocessor import data_processor
+from v2_analyzer.get_menu.preparation.table_base import (Base, FilenameTable,
+                                                         menu_table_type)
 
 # useful for handling different item types with a single interface
 # from itemadapter import ItemAdapter
@@ -63,7 +63,7 @@ class DownloadData:
 class DataProcess:
 
     def __init__(self):
-        self.download_path = Path('./get_menu/tmp/')
+        self.download_path = Path('./v2_analyzer/get_menu/tmp/')
         if not self.download_path.exists():
             self.download_path.mkdir()
 

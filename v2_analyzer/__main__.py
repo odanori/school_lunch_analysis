@@ -3,7 +3,7 @@ import argparse
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
-from get_menu.get_menu.spiders.menu_spider import MenuSpider
+from v2_analyzer.get_menu.get_menu.spiders.menu_spider import MenuSpider
 
 
 def make_parser():
