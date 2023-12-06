@@ -7,7 +7,7 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-from v2_analyzer.config import Config
+from v2_analyzer.settings.config import Config
 
 BOT_NAME = "get_menu"
 
