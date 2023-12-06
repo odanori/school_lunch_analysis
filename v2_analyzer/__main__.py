@@ -4,6 +4,8 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
 from v2_analyzer.get_menu.get_menu.spiders.menu_spider import MenuSpider
+from v2_analyzer.graphs.get_data_from_db import take_data
+from v2_analyzer.graphs.make_graph import output_graph
 
 
 def make_parser():
@@ -23,12 +25,18 @@ def run_spider():
     process.start()
 
 
+def run_viewer():
+    all_data = take_data()
+    output_graph(all_data)
+
+
+# TODO:可視化機能の増強
 def run():
     args = make_parser()
     if args.runtype == 'getdata':
         run_spider()
     elif args.runtype == 'view':
-        raise Exception('可視化は未実装')
+        run_viewer()
     else:
         raise ValueError('getdata か view を指定してください')
 
