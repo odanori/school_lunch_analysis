@@ -5,7 +5,7 @@ from typing import List
 from scrapy import Spider
 from scrapy.http import Request
 
-from get_menu.get_menu.items import GetMenuItem
+from v2_analyzer.get_menu.get_menu.items import GetMenuItem
 
 
 class MenuSpider(Spider):
