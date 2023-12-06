@@ -5,6 +5,14 @@ from plotly.subplots import make_subplots
 
 
 def output_num_graph(data: pd.DataFrame) -> None:
+    """各種数値データ(分量やカロリーなど)の日付ごとの合算値を地域グループごとに比較するグラフ作成
+       横軸が日付、縦軸が各種数値データ
+       数値データ-> amount_g: 分量(g), carolies_kcal: エネルギー(kcal), protein_g: たんぱく質(g)
+                   fat_g: 脂質(g), sodium_mg: ナトリウム(mg)
+
+    Args:
+        data (pd.DataFrame): DBから取り出したデータ
+    """
     area_groups = sorted(list(set(data['area_group'].values)))
 
     extract_cols = ['area_group', 'date', 'amount_g', 'carolies_kcal', 'protein_g', 'fat_g', 'sodium_mg']
@@ -30,6 +38,17 @@ def output_num_graph(data: pd.DataFrame) -> None:
 
 
 def plot_content(data_group: pd.DataFrame, content: str, area: str, row: int, col: int, color: str, fig) -> None:
+    """横軸が日付、縦軸が数値データの折れ線グラフを描画する
+
+    Args:
+        data_group (pd.DataFrame): 地域グループごとに抽出されたデータ
+        content (str): 数値データ名(例: fat_g->脂質(g)など)
+        area (str): 地域グループ名(例: a->地域グループa)
+        row (int): グラフエリアの行位置番号
+        col (int): グラフエリアの列位置番号
+        color (str): 折れ線グラフの色
+        fig : グラフエリアのオブジェクト
+    """
     date = data_group['date'].values
     cont_value = data_group[content].values
     trace = go.Scatter(
@@ -39,6 +58,15 @@ def plot_content(data_group: pd.DataFrame, content: str, area: str, row: int, co
 
 
 def layout(content: str, graph_num: int, fig):
+    """グラフエリアごとにレイアウトを設定する
+       x軸の目盛間隔、y軸名、凡例位置、グラフの大きさなど
+
+    Args:
+        content (str): 数値データ名(例: fat_g->脂質(g)など)
+        graph_num (int): グラフエリア識別番号。各グラフエリアごとに軸名や目盛間隔を指定する
+                         例: graph_num1, graph_num2でグラフエリア1、グラフエリア2それぞれのレイアウト設定
+        fig : グラフエリアのオブジェクト
+    """
     fig.update_layout(**{f'xaxis{graph_num}': dict(dtick='M1')},
                       **{f'yaxis{graph_num}': dict(title=content)},
                       legend=dict(xanchor='left'),
