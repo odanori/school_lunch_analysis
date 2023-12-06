@@ -24,7 +24,7 @@ def output_num_graph(data: pd.DataFrame) -> None:
             data_group = sum_contents_by_area[sum_contents_by_area['area_group'] == area]
             color = colors[e]
             plot_content(data_group, cont, area, row, col, color, fig)
-        layout(fig, cont, graph_num)
+        layout(cont, graph_num, fig)
 
     fig.show()
 
@@ -38,7 +38,7 @@ def plot_content(data_group: pd.DataFrame, content: str, area: str, row: int, co
     fig.add_trace(trace, row=row, col=col)
 
 
-def layout(fig, content, graph_num):
+def layout(content, graph_num, fig):
     fig.update_layout(**{f'xaxis{graph_num}': dict(dtick='M1')},
                       **{f'yaxis{graph_num}': dict(title=content)},
                       legend=dict(xanchor='left'),
