@@ -7,6 +7,8 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+from v2_analyzer.config import Config
+
 BOT_NAME = "get_menu"
 
 SPIDER_MODULES = ["v2_analyzer.get_menu.get_menu.spiders"]
@@ -103,6 +105,6 @@ FEED_EXPORT_ENCODING = "utf-8"
 LOG_LEVEL = 'DEBUG'
 
 # PostgreSQLの接続情報
-POSTGRES_URI = "postgresql://postgres:postgres@localhost:5432/lunch_menu"
-POSTGRES_FILENAME_TABLE = "filenames"
-POSTGRES_BASE_TABLE_NAME = "menu"
+POSTGRES_URI = Config.POSTGRES_URI
+POSTGRES_FILENAME_TABLE = Config.POSTGRES_FILENAME_TABLE
+POSTGRES_BASE_TABLE_NAME = Config.POSTGRES_BASE_TABLE_NAME
