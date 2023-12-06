@@ -67,7 +67,7 @@ def layout(content: str, graph_num: int, fig):
                          例: graph_num1, graph_num2でグラフエリア1、グラフエリア2それぞれのレイアウト設定
         fig : グラフエリアのオブジェクト
     """
-    fig.update_layout(**{f'xaxis{graph_num}': dict(dtick='M1')},
+    fig.update_layout(**{f'xaxis{graph_num}': dict(dtick='M1', title='date')},
                       **{f'yaxis{graph_num}': dict(title=content)},
                       legend=dict(xanchor='left'),
                       width=1500,
