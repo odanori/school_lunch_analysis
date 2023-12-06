@@ -82,7 +82,7 @@
       - DBに登録するテーブルの設定
 - settings: 設定ファイル置き場
   - config.py
-    - DB接続設定などの設定ファイル
+    - DB接続設定などを設定する設定ファイル
 - graphs: グラフ表示に関するファイル置き場
   - get_data_from_db.py
     - DBからデータを取得する
@@ -94,8 +94,9 @@
 - python 3.11
 
 ## 使い方
-1. settings/config.jsonに値を設定する。設定方法は[configファイルについて](#configファイルについて)を参考に設定する
-2. 以下のコマンドの順に実行する
+1. webからダウンロードしたデータを保存するDB(postgreSQL)を準備する
+2. settings/config.jsonにDB接続に関する値を設定する。設定方法は[configファイルについて](#configファイルについて)を参考に設定する
+3. 以下のコマンドの順に実行する
    - python3 -m v2_analyzer getdata
      - [横須賀市の小学校の給食](https://www.city.yokosuka.kanagawa.jp/8345/kyuushoku/kyuusyoku-menu-open.html)からデータを取得する
      - 既にデータがDBに登録されているならば、DBに登録されていないデータ(最新データなど)が追加される
@@ -106,7 +107,7 @@
      - [出力グラフ例](#出力グラフ例)
 
 ## configファイルについて
-- 以下に値を設定する。DBはpostgresql
+- 以下にDB接続に関する値を設定する。DBはpostgresqlを使用する
     - POSTGRES_URI = 'postgresql://{user}:{pass}@{host}:{port}/{db_name}'
       - user: ユーザー名
       - pass: パスワード
