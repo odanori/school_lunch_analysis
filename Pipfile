@@ -12,6 +12,10 @@ scikit-learn = "*"
 pathlib = "*"
 typing = "*"
 selenium = "*"
+scrapy = "*"
+psycopg2-binary = "*"
+sqlalchemy = "*"
+plotly = "*"
 
 [dev-packages]
 
