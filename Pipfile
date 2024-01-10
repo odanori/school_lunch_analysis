@@ -16,6 +16,7 @@ scrapy = "*"
 psycopg2-binary = "*"
 sqlalchemy = "*"
 plotly = "*"
+statsmodels = "*"
 
 [dev-packages]
 
