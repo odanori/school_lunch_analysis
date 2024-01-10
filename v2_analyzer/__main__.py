@@ -3,8 +3,8 @@ import argparse
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
+from v2_analyzer.get_data_from_db import take_data
 from v2_analyzer.get_menu.get_menu.spiders.menu_spider import MenuSpider
-from v2_analyzer.graphs.get_data_from_db import take_data
 from v2_analyzer.graphs.make_graph import output_graph
 
 
