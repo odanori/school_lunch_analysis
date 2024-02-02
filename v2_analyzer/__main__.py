@@ -6,6 +6,7 @@ from scrapy.utils.project import get_project_settings
 from v2_analyzer.get_menu.get_menu.spiders.menu_spider import MenuSpider
 from v2_analyzer.graphs.get_data_from_db import take_data
 from v2_analyzer.graphs.make_graph import output_graph
+from v2_analyzer.prediction.menu_type_prediction import prediction
 
 
 def make_parser():
@@ -27,7 +28,8 @@ def run_spider():
 
 def run_viewer():
     all_data = take_data()
-    output_graph(all_data)
+    # output_graph(all_data)
+    prediction(all_data)
 
 
 # TODO:可視化機能の増強
